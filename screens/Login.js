@@ -16,7 +16,7 @@ const Login = () => {
   const [textFailCheck, setTextFailCheck] = useState("")
   const [failCheck, setFailCheck] = useState(true)
 
-  if(failLog && failCheck){
+  if (failLog && failCheck) {
     setTextFailCheck('Email ou mot de passe incorrect')
     setFailCheck(false)
   }
@@ -55,10 +55,10 @@ const Login = () => {
 
           <Button title='Connexion' onPress={() => { loginCand(email, password) }} />
 
-          <View style={{ flexDirection: 'row', marginTop: 20, justifyContent:'center' }}>
+          <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }}>
             <Text>pas de compte ? </Text>
 
-            <Link to={'/register'}>
+            <Link to={'/registerlanding'}>
               <Text style={styles.link}>Inscription</Text>
             </Link>
           </View>
@@ -101,15 +101,15 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
   },
-  conn:{
+  conn: {
     width: '80%',
-    backgroundColor:'whitesmoke',
-    borderRadius:20,
+    backgroundColor: 'whitesmoke',
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    padding:10,
-    borderColor:"#003147",
-    borderWidth:1,
+    padding: 10,
+    borderColor: "#003147",
+    borderWidth: 1,
   },
   input: {
     marginBottom: 12,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 36,
   },
   failCheck: {
-    textAlign:'center',
+    textAlign: 'center',
     color: "red"
   }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Top from '../components/Top'
 
 export default class Search extends React.Component {
@@ -16,8 +16,8 @@ export default class Search extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent:'center',
-        textAlign:'center',
+        justifyContent: 'center',
+        textAlign: 'center',
     },
     text: {
         color: "black",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import Top from '../components/Top'
 
 export default class UpdateCand extends React.Component {
@@ -7,7 +7,16 @@ export default class UpdateCand extends React.Component {
         return (
             <View style={styles.container}>
                 <Top />
-                <Text style={styles.text}>Modifier votre profil</Text>
+                <View style={styles.form}>
+                    <Text style={styles.text}>Modifier votre profil</Text>
+                    <TextInput style={styles.input} placeholder='Nom'></TextInput>
+                    <TextInput style={styles.input} placeholder='Prénom'></TextInput>
+                    <TextInput style={styles.input} placeholder='Date de naissance'></TextInput>
+                    <TextInput style={styles.input} placeholder='Téléphone'></TextInput>
+                    <TextInput style={styles.input} placeholder='Code Postal'></TextInput>
+                    <TextInput style={styles.input} placeholder='Ville'></TextInput>
+                    <TextInput style={styles.input} placeholder='Adresse'></TextInput>
+                </View>
             </View>
         )
     }
@@ -16,12 +25,31 @@ export default class UpdateCand extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent:'center',
-        textAlign:'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 0,
     },
     text: {
         color: "black",
         fontSize: 30,
         fontWeight: "bold",
     },
+    input: {
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: "#BBB",
+        borderRadius: 5,
+        paddingHorizontal: 14,
+        width: "80%"
+    },
+    form:{
+        width: '80%',
+        backgroundColor: 'whitesmoke',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderColor: "#003147",
+        borderWidth: 1,
+    }
 })

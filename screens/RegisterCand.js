@@ -6,7 +6,7 @@ import { Link } from 'react-router-native'
 import { AuthContext } from '../src/AuthContext'
 import Spinner from 'react-native-loading-spinner-overlay/lib'
 
-const Register = () => {
+const RegisterCand = () => {
 
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -50,7 +50,7 @@ const Register = () => {
                         secureTextEntry
                     />
 
-                    <Button title='Inscription'
+                    <Button title='Suivant'
                         onPress={() => {
                             registerCand(email, password);
                         }} />
@@ -70,7 +70,7 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default RegisterCand;
 
 const styles = StyleSheet.create({
     container: {
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        borderColor:"#003147",
-        borderWidth:1,
+        borderColor: "#003147",
+        borderWidth: 1,
     },
     input: {
         marginBottom: 12,

@@ -17,9 +17,9 @@ const Home = () => {
             <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
             <Text style={styles.text}>Profil Candidat</Text>
 
-            <Link style={{marginVertical:20}} to={'/updatecand'}><Text>Modifier mon profil</Text></Link>
+            <Link style={{ marginVertical: 20 }} to={'/updatecand'}><Text>Modifier mon profil</Text></Link>
 
-            <Link style={{marginVertical:20}} to={'/search'}><Text>Rechercher une offre</Text></Link>
+            <Link style={{ marginVertical: 20 }} to={'/search'}><Text>Rechercher une offre</Text></Link>
 
             <Button title='Logout' color='red' onPress={logout} />
 

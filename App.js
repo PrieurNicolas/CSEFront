@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <AuthProvider>
-        <StatusBar hidden={true}/>
+        <StatusBar hidden={true} />
         <Navigation />
       </AuthProvider>
     )
