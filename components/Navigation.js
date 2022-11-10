@@ -7,7 +7,8 @@ import Register from '../screens/Register.js';
 import PasswordLost from '../screens/PasswordLost.js';
 import Home from '../screens/Home'
 import Loading from './Loading'
-
+import UpdateCand from '../screens/UpdateCand';
+import Search from '../screens/Search';
 
 import { AuthContext } from '../src/AuthContext';
 import { NativeRouter, Route, Routes } from 'react-router-native';
@@ -27,7 +28,11 @@ const Navigation = () => {
                             options={{ headerShown: false }}
                         />
                     ) : userInfo.accessToken ? (
+                        <>
                         <Route exact path='/' element={<Home />} />
+                        <Route exact path='/updatecand' element={<UpdateCand/>} />
+                        <Route exact path='/search' element={<Search/>} />
+                        </>
                     ) : (
                         <>
                             <Route exact path='/' element={<Login />} />

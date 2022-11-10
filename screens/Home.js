@@ -8,19 +8,18 @@ import { AuthContext } from '../src/AuthContext'
 
 const Home = () => {
 
-    const { userInfo, logout, isLoading } = useContext(AuthContext);
+    const { logout, isLoading } = useContext(AuthContext);
 
     return (
         <View style={styles.container}>
             <Top />
             <Spinner visible={isLoading} />
-            <Text style={styles.welcome}>Welcome {userInfo.userId}</Text>
             <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
             <Text style={styles.text}>Profil Candidat</Text>
 
-            <Link to={'/about'}><Text>Modifier mon profil</Text></Link>
+            <Link style={{marginVertical:20}} to={'/updatecand'}><Text>Modifier mon profil</Text></Link>
 
-            <Link to={'/about'}><Text>Rechercher une offre</Text></Link>
+            <Link style={{marginVertical:20}} to={'/search'}><Text>Rechercher une offre</Text></Link>
 
             <Button title='Logout' color='red' onPress={logout} />
 

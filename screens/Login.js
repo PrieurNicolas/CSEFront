@@ -11,7 +11,15 @@ const Login = () => {
   const [email, setEmail] = useState("pierru@gmail.com");
   const [password, setPassword] = useState("hash");
 
-  const { isLoading, loginCand } = useContext(AuthContext);
+  const { isLoading, loginCand, failLog } = useContext(AuthContext);
+
+  const [textFailCheck, setTextFailCheck] = useState("")
+  const [failCheck, setFailCheck] = useState(true)
+
+  if(failLog && failCheck){
+    setTextFailCheck('Email ou mot de passe incorrect')
+    setFailCheck(false)
+  }
 
   return (
     <View style={styles.container}>
@@ -38,6 +46,8 @@ const Login = () => {
             onChangeText={text => setPassword(text)}
             secureTextEntry
           />
+
+          <Text style={styles.failCheck}>{textFailCheck}</Text>
 
           <Link to={'/passwordlost'}>
             <Text style={styles.link2}>Mot de passe oublié ?</Text>
@@ -116,5 +126,9 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 20,
     marginBottom: 36,
+  },
+  failCheck: {
+    textAlign:'center',
+    color: "red"
   }
 });

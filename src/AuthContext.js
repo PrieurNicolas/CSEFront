@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [splashLoading, setSplashLoading] = useState(false);
+    const [failLog, setFailLog] = useState(false);
 
     const registerCand = (mail, mdp, nom, prenom, dateNaissance, telephone, codePostal, ville, adresse, dispo, diplome) => {
         setIsLoading(true);
@@ -39,8 +40,10 @@ export const AuthProvider = ({ children }) => {
             setUserInfo(userInfo);
             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
             setIsLoading(false);
+            setFailLog(false)
         }).catch(e => {
             console.log(`Login error : ${e}`);
+            setFailLog(true);
             setIsLoading(false);
         })
     };
@@ -85,6 +88,7 @@ export const AuthProvider = ({ children }) => {
                 isLoading,
                 userInfo,
                 splashLoading,
+                failLog,
                 registerCand,
                 loginCand,
                 logout,
