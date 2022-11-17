@@ -21,7 +21,15 @@ const RegisterCand = () => {
     const [ville, setVille] = useState("Boulogne sur mer");
     const [adresse, setAdresse] = useState("42 rue de wissant");
 
-    const { isLoading, registerCand } = useContext(AuthContext);
+    const { isLoading, registerCand, failLog } = useContext(AuthContext);
+
+    const [textFailCheck, setTextFailCheck] = useState("")
+    const [failCheck, setFailCheck] = useState(true)
+  
+    if (failLog && failCheck) {
+      setTextFailCheck('Inscription impossible.')
+      setFailCheck(false)
+    }
 
     //Selection de diplômes
     const [allDiplomes, setAllDiplomes] = useState([]);
@@ -64,28 +72,34 @@ const RegisterCand = () => {
     }
 
     function result() {
-        console.log(email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes)
+        console.log(
+            email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes,
+            dateNaiss
+            )
     }
 
 
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [date, setdate] = useState();
 
     const showDatePicker = () => {
-      setDatePickerVisibility(true);
+        setDatePickerVisibility(true);
     };
-  
+
     const hideDatePicker = () => {
-      setDatePickerVisibility(false);
+        setDatePickerVisibility(false);
     };
-  
+
     const handleConfirm = (date) => {
-      console.warn("A date has been picked: ", date);
-      hideDatePicker();
+        console.warn("A date has been picked: ", date);
+        setDateNaiss(date)
+        setdate((date).text)
+        hideDatePicker();
     };
 
 
-    
+
     return (
         <View style={styles.container}>
             <Top />
@@ -118,6 +132,7 @@ const RegisterCand = () => {
                                 value={password}
                                 onChangeText={text => setPassword(text)}
                                 secureTextEntry
+                                maxLength={30}
                             />
 
                             <Text>Confirmation du mot de passe*</Text>
@@ -127,6 +142,7 @@ const RegisterCand = () => {
                                 value={passwordConf}
                                 onChangeText={text => setPasswordConf(text)}
                                 secureTextEntry
+                                maxLength={30}
                             />
 
                             {/* <Text>Poste recherché</Text>
@@ -143,7 +159,7 @@ const RegisterCand = () => {
                                 placeholder='Nom'
                                 value={nom}
                                 onChangeText={text => setNom(text)}
-
+                                maxLength={20}
                             />
 
                             <Text>Prénom*</Text>
@@ -152,43 +168,34 @@ const RegisterCand = () => {
                                 placeholder='Prénom'
                                 value={prenom}
                                 onChangeText={text => setPrenom(text)}
-
+                                maxLength={20}
                             />
+
                             {/* ===================================================================================================================== */}
+
                             <Text>Date de naissance*</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder='Date de naissance'
-                                value={dateNaiss}
-                                onChangeText={text => setDateNaiss}
-                            />
+                            
+                            <Text>{date}</Text>
 
-
-<View>
-      <Button title="Show Date Picker" onPress={showDatePicker} />
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="date"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-      />
-    </View>
-
-
-
-
-
-
-
+                            <View>
+                                <Button title="Show Date Picker" onPress={showDatePicker} />
+                                <DateTimePickerModal
+                                    isVisible={isDatePickerVisible}
+                                    mode="date"
+                                    onConfirm={handleConfirm}
+                                    onCancel={hideDatePicker}
+                                />
+                            </View>
 
                             {/* ===================================================================================================================== */}
+
                             <Text>Téléphone*</Text>
                             <TextInput
                                 style={styles.input}
                                 placeholder='Téléphone'
                                 value={tel}
-                                onChangeText={text => setTel}
-
+                                onChangeText={text => setTel(text)}
+                                maxLength={10}
                             />
 
                             <Text>Code postal*</Text>
@@ -196,7 +203,8 @@ const RegisterCand = () => {
                                 style={styles.input}
                                 placeholder='Code postal'
                                 value={codePostal}
-                                onChangeText={text => setCodePostal}
+                                onChangeText={text => setCodePostal(text)}
+                                maxLength={5}
                             />
 
                             <Text>Ville*</Text>
@@ -204,7 +212,8 @@ const RegisterCand = () => {
                                 style={styles.input}
                                 placeholder='Ville'
                                 value={ville}
-                                onChangeText={text => setVille}
+                                onChangeText={text => setVille(text)}
+                                maxLength={100}
                             />
 
                             <Text>Adresse*</Text>
@@ -212,8 +221,8 @@ const RegisterCand = () => {
                                 style={styles.input}
                                 placeholder='Adresse'
                                 value={adresse}
-                                onChangeText={text => setAdresse}
-
+                                onChangeText={text => setAdresse(text)}
+                                maxLength={100}
                             />
 
                             {/* <Text>Joindre une photo</Text>
@@ -255,6 +264,7 @@ const RegisterCand = () => {
                                     </View>
                                 ))}
                             </View>
+                            <Text style={styles.failCheck}>{textFailCheck}</Text>
 
 
                             <Pressable style={styles.btn}
@@ -384,4 +394,7 @@ const styles = StyleSheet.create({
         height: 25,
         width: 25,
     },
+    failCheck:{
+        color:'red',
+    }
 });

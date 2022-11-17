@@ -49,9 +49,11 @@ export const AuthProvider = ({ children }) => {
             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
             setIsLoading(false);
             console.log(userInfo);
+            setFailLog(false)
         }).catch(e => {
-            console.log(`Register error : ${e}`);
+            console.log(`Register Candidates error : ${e}`);
             setIsLoading(false);
+            setFailLog(true);
         });
     };
 
@@ -109,6 +111,47 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn();
     }, []);
 
+    const registerRecr = (email, password, siret, structureName, adresse, codePostal, ville, tel, dispos) => {
+        setIsLoading(true);
+
+        let objDispo = dispos?.map(((period) => { 
+            return { "id": parseInt(period) }
+         }))
+
+        axios.post(`${BASE_URL}/employers`,
+        {
+            "employer": {
+                "siret": siret,
+                "structurename": structureName,
+            },
+            "users": {
+                "password": password,
+                "email": email,
+                "phone": tel,
+                "isActif": true,
+                "TokenId": 1
+            },
+            "localisation": {
+                "address": adresse,
+                "zipCode": codePostal,
+                "city": ville
+            },
+            "periods": objDispo
+            }
+        ).then(res => {
+            let userInfo = res.data;
+            setUserInfo(userInfo);
+            AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
+            setIsLoading(false);
+            console.log(userInfo);
+            setFailLog(false)
+        }).catch(e => {
+            console.log(`Register Recruteur error : ${e}`);
+            setIsLoading(false);
+            setFailLog(true)
+        });
+    };
+
     return (
         <AuthContext.Provider
             value={{
@@ -117,6 +160,7 @@ export const AuthProvider = ({ children }) => {
                 splashLoading,
                 failLog,
                 registerCand,
+                registerRecr,
                 loginCand,
                 logout,
             }}>
