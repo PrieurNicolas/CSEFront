@@ -11,11 +11,38 @@ export const AuthProvider = ({ children }) => {
     const [splashLoading, setSplashLoading] = useState(false);
     const [failLog, setFailLog] = useState(false);
 
-    const registerCand = (mail, mdp, nom, prenom, dateNaissance, telephone, codePostal, ville, adresse, dispo, diplome) => {
+    const registerCand = (email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes) => {
         setIsLoading(true);
 
+        let objDispo = dispos?.map(((period) => { 
+            return { "id": parseInt(period) }
+         }))
+            let objDiplome = diplomes?.map(((degree) => {
+           return { "id": parseInt(degree) }
+         }))
+
         axios.post(`${BASE_URL}/candidates`, {
-            mail, mdp, nom, prenom, dateNaissance, telephone, codePostal, ville, adresse, dispo, diplome
+            "candidate": {
+                "firstname": prenom,
+                "lastname": nom,
+                "birthday": dateNaiss
+            },
+            "users": {
+                "password": password,
+                "email": email,
+                "phone": tel,
+                "isActif": true
+            },
+            "localisation": {
+                "address": adresse,
+                "zipCode": codePostal,
+                "city": ville
+            },
+            "periods": objDispo
+            ,
+            "degrees": objDiplome
+            // email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes
+
         }).then(res => {
             let userInfo = res.data;
             setUserInfo(userInfo);

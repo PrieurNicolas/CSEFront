@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import Bottom from '../components/Bottom'
 import Top from '../components/Top'
@@ -28,7 +28,7 @@ const PasswordLost = () => {
                         onChangeText={text => setEmail(text)}
                     />
 
-                    <Button title='valider' />
+                    <Pressable style={styles.btn}><Text style={styles.txtbtn}>Valider</Text></Pressable>
 
                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
 
@@ -106,5 +106,19 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         marginTop: 20,
         marginBottom: 36,
-    }
+    },
+    txtbtn:{
+        color:'white',
+        fontSize: 15,
+        fontWeight: "bold",
+    },
+    btn:{
+        marginHorizontal:'auto',
+        alignItems:'center',
+        justifyContent:'center',
+        height:40,
+        width:200,
+        backgroundColor:'#003147',
+        borderRadius:10,
+      },
 });

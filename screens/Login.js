@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity, Pressable } from 'react-native'
 import React, { useContext, useState } from 'react'
 import Bottom from '../components/Bottom'
 import Top from '../components/Top'
@@ -53,7 +53,7 @@ const Login = () => {
             <Text style={styles.link2}>Mot de passe oublié ?</Text>
           </Link>
 
-          <Button title='Connexion' onPress={() => { loginCand(email, password) }} />
+          <Pressable style={styles.btn} onPress={() => { loginCand(email, password) }} ><Text style={styles.txtbtn}>Connexion</Text></Pressable>
 
           <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }}>
             <Text>pas de compte ? </Text>
@@ -130,5 +130,19 @@ const styles = StyleSheet.create({
   failCheck: {
     textAlign: 'center',
     color: "red"
+  },
+  btn:{
+    marginHorizontal:'auto',
+    alignItems:'center',
+    justifyContent:'center',
+    height:40,
+    width:200,
+    backgroundColor:'#003147',
+    borderRadius:10,
+  },
+  txtbtn:{
+    color:'white',
+    fontSize: 15,
+    fontWeight: "bold",
   }
 });

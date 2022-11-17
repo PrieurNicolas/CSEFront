@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity, Pressable } from 'react-native'
 import React, { useContext, useState } from 'react'
 import Bottom from '../components/Bottom'
 import Top from '../components/Top'
@@ -6,14 +6,19 @@ import { Link } from 'react-router-native'
 import { AuthContext } from '../src/AuthContext'
 import Spinner from 'react-native-loading-spinner-overlay/lib'
 
-const RegisterCand = () => {
+const RegisterRecr = () => {
 
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [passwordConf, setPasswordConf] = useState(null);
     const [siret, setSiret] = useState(null);
+    const [structureName, setStructureName] = useState(null)
+    const [adresse, setAdresse] = useState(null)
+    const [codePostal, setCodePostal] = useState(null)
+    const [ville, setVille] = useState(null)
+    const [tel, setTel] = useState()
 
-    const { isLoading, registerCand } = useContext(AuthContext);
+    const { isLoading, registerRecr } = useContext(AuthContext);
 
 
     return (
@@ -59,10 +64,45 @@ const RegisterCand = () => {
                         secureTextEntry
                     />
 
-                    <Button title='Suivant'
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Nom de la structure'
+                        value={structureName}
+                        onChangeText={text => setStructureName(text)}
+                    />
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Adresse'
+                        value={adresse}
+                        onChangeText={text => setAdresse(text)}
+                    />
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Code postal'
+                        value={codePostal}
+                        onChangeText={text => setCodePostal(text)}
+                    />
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Ville'
+                        value={ville}
+                        onChangeText={text => setVille(text)}
+                    />
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Téléphone'
+                        value={tel}
+                        onChangeText={text => setTel(text)}
+                    />
+
+                    <Pressable style={styles.btn}
                         onPress={() => {
-                            registerCand(email, password);
-                        }} />
+                            registerRecr(email, password);
+                        }}><Text style={styles.txtbtn}>Suivant</Text></Pressable>
 
                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
 
@@ -79,7 +119,7 @@ const RegisterCand = () => {
     )
 }
 
-export default RegisterCand;
+export default RegisterRecr;
 
 const styles = StyleSheet.create({
     container: {
@@ -128,5 +168,19 @@ const styles = StyleSheet.create({
     },
     link: {
         color: "#003147",
+    },
+    txtbtn: {
+        color: 'white',
+        fontSize: 15,
+        fontWeight: "bold",
+    },
+    btn: {
+        marginHorizontal: 'auto',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        width: 200,
+        backgroundColor: '#003147',
+        borderRadius: 10,
     },
 });
