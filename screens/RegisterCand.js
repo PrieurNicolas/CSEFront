@@ -10,16 +10,16 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const RegisterCand = () => {
 
-    const [email, setEmail] = useState('nicolasprfieur22@gmail.com');
-    const [password, setPassword] = useState('chips');
-    const [passwordConf, setPasswordConf] = useState('chips');
-    const [nom, setNom] = useState("efedfe");
-    const [prenom, setPrenom] = useState("nufefell");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConf, setPasswordConf] = useState('');
+    const [nom, setNom] = useState("");
+    const [prenom, setPrenom] = useState("");
     const [dateNaiss, setDateNaiss] = useState(new Date());
-    const [tel, setTel] = useState("0665432369");
-    const [codePostal, setCodePostal] = useState("62200");
-    const [ville, setVille] = useState("Boulogne sur mer");
-    const [adresse, setAdresse] = useState("42 rue de wissant");
+    const [tel, setTel] = useState("");
+    const [codePostal, setCodePostal] = useState("");
+    const [ville, setVille] = useState("");
+    const [adresse, setAdresse] = useState("");
 
     const { isLoading, registerCand, failLog } = useContext(AuthContext);
 
@@ -97,6 +97,60 @@ const RegisterCand = () => {
         setdate((date).text)
         hideDatePicker();
     };
+
+
+    const checkTextInput = () => {
+        //Check for Email
+        if(!email.trim()) {
+            alert('Veuillez entrer un email')
+        }
+        //Check for the Email TextInput
+        if (!password.trim()) {
+          alert('Veuillez entrer un mot de passe');
+          return;
+        }
+        //Check Double Password
+        if(password != passwordConf) {
+            alert('Mot de passe diff');
+            return;
+        }
+        //Check for name of the Structure
+        if(!nom.trim()){
+            alert('Veuillez entrer un nom');
+            return;
+        }
+        //Check for adresse
+        if(!prenom.trim()){
+            alert('Veuillez entrer un prenom');
+            return;
+        }
+        //Check for postal code
+        if(!tel.trim()){
+            !alert('Veuillez entrer un numero de telephone');
+            return;
+        }
+        //Check for ville
+        if(!codePostal.trim()){
+            !alert('Veuillez entrer un code postal');
+            return;
+        }
+        //Check for phone
+        if(!ville.trim()){
+            !alert('Veuillez entrer une ville');
+            return;
+        }
+        if(!adresse.trim()){
+            !alert('Veuillez entrer une adresse')
+        }
+        //Check for the Dispo TextInput
+        if(!dispos.length==1) {
+            alert('Veuillez entrer une disponibilité');
+            return;
+        }
+        setTextFailCheck('Inscription succes')
+        registerCand(email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes);
+        alert('Success');
+      };
 
 
 
@@ -236,8 +290,8 @@ const RegisterCand = () => {
                             <Text>Mes disponibilités*</Text>
 
                             <View style={styles.options}>
-                                {allDispo.map(option => (
-                                    <View key={option} style={styles.diplome}>
+                                {allDispo.map((option,i) => (
+                                    <View key={i} style={styles.diplome}>
                                         <TouchableOpacity style={styles.checkBox}
                                             onPress={() => pickDispo(option.id)}>
                                             {dispos.includes(option.id) && (
@@ -252,8 +306,8 @@ const RegisterCand = () => {
                             <Text>Mes diplômes</Text>
 
                             <View style={styles.options}>
-                                {allDiplomes?.map(option => (
-                                    <View key={option} style={styles.diplome}>
+                                {allDiplomes?.map((option,i) => (
+                                    <View key={i} style={styles.diplome}>
                                         <TouchableOpacity style={styles.checkBox}
                                             onPress={() => pickDiplome(option.id)}>
                                             {diplomes.includes(option.id) && (
@@ -268,11 +322,9 @@ const RegisterCand = () => {
 
 
                             <Pressable style={styles.btn}
-                                onPress={() => {
-                                    registerCand(email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes);
-                                }}><Text style={styles.txtbtn}>Terminer</Text></Pressable>
+                                onPress={checkTextInput}><Text style={styles.txtbtn}>Terminer</Text></Pressable>
 
-                            <Button onPress={result} title='Test'></Button>
+                            {/* <Button onPress={result} title='Test'></Button> */}
                         </View>
                     </View>
 
@@ -379,7 +431,7 @@ const styles = StyleSheet.create({
         height: 25,
         borderWidth: 2,
         borderColor: "#003147",
-        borderRadius: 100,
+        borderRadius: 5,
         marginHorizontal: 15,
         alignItems: 'center',
         justifyContent: 'center'
@@ -390,7 +442,7 @@ const styles = StyleSheet.create({
     },
     check: {
         backgroundColor: '#003147',
-        borderRadius: 100,
+        borderRadius: 5,
         height: 25,
         width: 25,
     },

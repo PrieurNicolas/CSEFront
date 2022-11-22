@@ -10,15 +10,15 @@ import axios from 'axios'
 
 const RegisterRecr = () => {
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [passwordConf, setPasswordConf] = useState(null);
-    const [siret, setSiret] = useState(null);
-    const [structureName, setStructureName] = useState(null)
-    const [adresse, setAdresse] = useState(null)
-    const [codePostal, setCodePostal] = useState(null)
-    const [ville, setVille] = useState(null)
-    const [tel, setTel] = useState()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConf, setPasswordConf] = useState('');
+    const [siret, setSiret] = useState('');
+    const [structureName, setStructureName] = useState('')
+    const [adresse, setAdresse] = useState('')
+    const [codePostal, setCodePostal] = useState('')
+    const [ville, setVille] = useState('')
+    const [tel, setTel] = useState('')
 
     const { isLoading, registerRecr, failLog } = useContext(AuthContext);
 
@@ -49,6 +49,61 @@ const RegisterRecr = () => {
         }
         setDispos(dispos => dispos.concat(selectedDispo));
     }
+
+    const checkTextInput = () => {
+        //Check for the NbSiret TextInput
+        if(!siret.trim()) {
+            alert('Veuillez entrer un Numero de Siret')
+        }
+        //Check for the Name TextInput
+        if (!email.trim()) {
+          alert('Veuillez entrer un mail');
+          return;
+        }
+        //Check for the Email TextInput
+        if (!password.trim()) {
+          alert('Veuillez entrer un mot de passe');
+          return;
+        }
+        //Check Double Password
+        if(password != passwordConf) {
+            alert('Mot de passe diff');
+            return;
+        }
+        //Check for name of the Structure
+        if(!structureName.trim()){
+            alert('Veuillez entrer un nom de structure');
+            return;
+        }
+        //Check for adresse
+        if(!adresse.trim()){
+            alert('Veuillez entrer une adresse');
+            return;
+        }
+        //Check for postal code
+        if(!codePostal.trim()){
+            !alert('Veuillez entrer un code postal');
+            return;
+        }
+        //Check for ville
+        if(!ville.trim()){
+            !alert('Veuillez entrer une ville');
+            return;
+        }
+        //Check for phone
+        if(!tel.trim()){
+            !alert('Veuillez entrer une numero de telephone');
+            return;
+        }
+        //Check for the Dispo TextInput
+        if(!dispos.length==1) {
+            alert('Veuillez entrer une disponibilité');
+            return;
+        }
+        setTextFailCheck('Inscription succes')
+        registerRecr(email, password, siret, structureName, adresse, codePostal, ville, tel, dispos),
+        alert('Success');
+      };
 
 
     return (
@@ -138,14 +193,15 @@ const RegisterRecr = () => {
                         placeholder='Téléphone'
                         value={tel}
                         onChangeText={text => setTel(text)}
-                        maxLength={10}
+                        maxLength={9}
+                        keyboardType={'number-pad'}
                     />
 
                     <Text>Mes disponibilités*</Text>
 
                     <View style={styles.options}>
-                        {allDispo.map(option => (
-                            <View key={option} style={styles.diplome}>
+                        {allDispo.map((option,i) => (
+                            <View key={i} style={styles.diplome}>
                                 <TouchableOpacity style={styles.checkBox}
                                     onPress={() => pickDispo(option.id)}>
                                     {dispos.includes(option.id) && (
@@ -159,9 +215,8 @@ const RegisterRecr = () => {
                     <Text style={styles.failCheck}>{textFailCheck}</Text>
 
                     <Pressable style={styles.btn}
-                        onPress={() => {
-                            registerRecr(email, password, siret, structureName, adresse, codePostal, ville, tel, dispos);
-                        }}><Text style={styles.txtbtn}>Suivant</Text></Pressable>
+                        onPress={checkTextInput}
+                            ><Text style={styles.txtbtn}>Suivant</Text></Pressable>
 
                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
 
@@ -273,7 +328,7 @@ const styles = StyleSheet.create({
         height: 25,
         borderWidth: 2,
         borderColor: "#003147",
-        borderRadius: 100,
+        borderRadius: 5,
         marginHorizontal: 15,
         alignItems: 'center',
         justifyContent: 'center'
@@ -284,7 +339,7 @@ const styles = StyleSheet.create({
     },
     check: {
         backgroundColor: '#003147',
-        borderRadius: 100,
+        borderRadius: 5,
         height: 25,
         width: 25,
     },

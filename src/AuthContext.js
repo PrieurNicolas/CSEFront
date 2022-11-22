@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [splashLoading, setSplashLoading] = useState(false);
     const [failLog, setFailLog] = useState(false);
 
-    const registerCand = (email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes) => {
+    const registerCand = (email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes) => {
         setIsLoading(true);
 
         let objDispo = dispos?.map(((period) => { 
@@ -25,10 +25,12 @@ export const AuthProvider = ({ children }) => {
             "candidate": {
                 "firstname": prenom,
                 "lastname": nom,
-                "birthday": dateNaiss
+                "birthday": dateNaiss,
+                "wantToBe": "animateur"
             },
             "users": {
                 "password": password,
+                "passwordconf": password,
                 "email": email,
                 "phone": tel,
                 "isActif": true
@@ -126,10 +128,10 @@ export const AuthProvider = ({ children }) => {
             },
             "users": {
                 "password": password,
+                "passwordconf": password,
                 "email": email,
                 "phone": tel,
                 "isActif": true,
-                "TokenId": 1
             },
             "localisation": {
                 "address": adresse,

@@ -8,8 +8,8 @@ import Spinner from 'react-native-loading-spinner-overlay'
 
 const Login = () => {
 
-  const [email, setEmail] = useState("pierru@gmail.com");
-  const [password, setPassword] = useState("hash");
+  const [email, setEmail] = useState("cse@cse.com");
+  const [password, setPassword] = useState("");
 
   const { isLoading, loginCand, failLog } = useContext(AuthContext);
 
