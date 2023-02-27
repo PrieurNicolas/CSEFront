@@ -193,7 +193,7 @@ const RegisterRecr = () => {
                         placeholder='Téléphone'
                         value={tel}
                         onChangeText={text => setTel(text)}
-                        maxLength={9}
+                        maxLength={10}
                         keyboardType={'number-pad'}
                     />
 

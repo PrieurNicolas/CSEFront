@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import Bottom from '../components/Bottom';
 import Top from '../components/Top'
 
-export default class UpdateCand extends React.Component {
+export default class UpdateRecr extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -12,7 +12,7 @@ export default class UpdateCand extends React.Component {
                 <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
 
                 <View style={styles.form}>
-                    <Text style={styles.text}>Modifier votre profil candidat</Text>
+                    <Text style={styles.text}>Modifier votre profil recruteur</Text>
                     <TextInput style={styles.input} placeholder='Nom'></TextInput>
                     <TextInput style={styles.input} placeholder='Prénom'></TextInput>
                     <TextInput style={styles.input} placeholder='Date de naissance'></TextInput>

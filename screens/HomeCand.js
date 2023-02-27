@@ -6,7 +6,7 @@ import { Link } from 'react-router-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import { AuthContext } from '../src/AuthContext'
 
-const Home = () => {
+const HomeCand = () => {
 
     const { logout, isLoading } = useContext(AuthContext);
 
@@ -21,14 +21,14 @@ const Home = () => {
                 <Text style={styles.text}>Profil Candidat</Text>
                 
                 <View style={styles.card}>
-                    <Link to={'/updatecand'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
+                    <Link to={'/updateprofil'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
                     <Text>Modifier mon profil</Text>
                 </View>
                 <View style={styles.card}>
                     <Link to={'/search'}><Image style={styles.candimg} source={require('../assets/image/cand2.png')}></Image></Link>
-                    <Text>Rechercher un candidat</Text>
+                    <Text>Rechercher un recruteur</Text>
                 </View>
-                <Button title='Logout' color='red' onPress={logout} />
+                <Button title='Déconnexion' color='red' onPress={logout} />
 
             </View>
             <Bottom />
@@ -36,7 +36,7 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default HomeCand;
 
 const styles = StyleSheet.create({
     container: {

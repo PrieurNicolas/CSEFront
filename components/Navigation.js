@@ -1,20 +1,27 @@
 import React, { useContext } from 'react';
 import { AppRegistry } from 'react-native';
+import { NativeRouter, Route, Routes } from 'react-router-native';
 
 import MentionsLegales from './MentionsLegales';
-import Login from '../screens/Login.js'
-import RegisterLanding from '../screens/RegisterLanding.js'
-import RegisterRecr from '../screens/RegisterRecr'
-import RegisterCand from '../screens/RegisterCand.js';
+import Login from '../screens/Login.js';
+import RegisterLanding from '../screens/RegisterLanding.js';
 import PasswordLost from '../screens/PasswordLost.js';
-import Home from '../screens/Home'
-import Loading from './Loading'
-import UpdateCand from '../screens/UpdateCand';
-import Search from '../screens/Search';
+import Loading from './Loading';
+import Error from '../screens/Error';
 
+import RegisterRecr from '../screens/RegisterRecr';
+import RegisterCand from '../screens/RegisterCand.js';
+
+import HomeRecr from '../screens/HomeRecr';
+import HomeCand from '../screens/HomeCand';
+
+import UpdateCand from '../screens/UpdateCand';
+import UpdateRecr from '../screens/UpdateRecr';
+
+import SearchCand from '../screens/SearchCand';
+import SearchRecr from '../screens/SearchRecr';
 
 import { AuthContext } from '../src/AuthContext';
-import { NativeRouter, Route, Routes } from 'react-router-native';
 
 
 const Navigation = () => {
@@ -31,11 +38,31 @@ const Navigation = () => {
                             options={{ headerShown: false }}
                         />
                     ) : userInfo.accessToken ? (
-                        <>
-                            <Route exact path='/' element={<Home />} />
-                            <Route exact path='/updatecand' element={<UpdateCand />} />
-                            <Route exact path='/search' element={<Search />} />
-                        </>
+                        userInfo.userId == 1 && (
+                            <>
+                                <Route exact path='/' element={<HomeRecr />} />
+                                <Route exact path='/updateprofil' element={<UpdateRecr />} />
+                                <Route exact path='/search' element={<SearchCand />} />
+                            </>
+                        ) ||
+                        userInfo.userId == 2 && (
+                            <>
+                                <Route exact path='/' element={<HomeCand />} />
+                                <Route exact path='/updateprofil' element={<UpdateCand />} />
+                                <Route exact path='/search' element={<SearchRecr />} />
+                            </>
+                        ) ||
+                        (userInfo.userId != 1 && userInfo.userId != 2) && (
+                            <>
+                            <Route exact path='/' element={<Error />} />
+                            </>
+                        )
+
+                        // (
+                        //     <Route exact path='/' element={<Home />} />
+                        // )
+
+
                     ) : (
                         <>
                             <Route exact path='/' element={<Login />} />

@@ -5,13 +5,13 @@ import { BASE_URL } from '../src/config'
 import axios from 'axios'
 import Bottom from '../components/Bottom'
 
-const Search = () => {
+const SearchRecr = () => {
 
     //Selection de candidats
     const [allCandidates, setAllCandidates] = useState([]);
     async function getCandidates() {
         try {
-            const response = await axios.get(`${BASE_URL}/candidates`)
+            const response = await axios.get(`${BASE_URL}/employers`)
             setAllCandidates(response.data)
         } catch (e) {
             console.log(`Erreur dans le getDiplome : ${e}`)
@@ -53,7 +53,7 @@ const Search = () => {
                                                 <View style={styles.check} />)
                                             }
                                         </TouchableOpacity>
-                                        <Text style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
+                                        <Text style={styles.diplomeName}>{option.structurename}</Text>
                                     </View>
                                 ))}
                             </View>
@@ -67,7 +67,7 @@ const Search = () => {
         </View>
     )
 }
-export default Search;
+export default SearchRecr;
 
 const styles = StyleSheet.create({
     container: {
