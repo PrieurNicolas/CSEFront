@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import Bottom from '../components/Bottom';
 import Top from '../components/Top'
 
 export default class UpdateCand extends React.Component {
@@ -7,6 +8,9 @@ export default class UpdateCand extends React.Component {
         return (
             <View style={styles.container}>
                 <Top />
+
+                <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
+
                 <View style={styles.form}>
                     <Text style={styles.text}>Modifier votre profil</Text>
                     <TextInput style={styles.input} placeholder='Nom'></TextInput>
@@ -17,6 +21,7 @@ export default class UpdateCand extends React.Component {
                     <TextInput style={styles.input} placeholder='Ville'></TextInput>
                     <TextInput style={styles.input} placeholder='Adresse'></TextInput>
                 </View>
+                <Bottom/>
             </View>
         )
     }
@@ -51,5 +56,18 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: "#003147",
         borderWidth: 1,
-    }
+    },
+    image: {
+        position: "relative",
+        height: "100%",
+        width: "100%",
+        margin: 0,
+    },
+    imagv: {
+        position: "absolute",
+        width: "100%",
+        height: 250,
+        top: 60,
+        margin: 0,
+    },
 })

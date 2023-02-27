@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
 import React from 'react'
 import Bottom from '../components/Bottom'
 import Top from '../components/Top'
@@ -12,12 +12,24 @@ const RegisterLanding = () => {
 
             <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
 
-            <Text style={styles.text}>Inscription</Text>
+            <View style={styles.containerScroll}>
 
-            <Link style={{ marginVertical: 20 }} to={'/registercand'}><Text>Candidat</Text></Link>
 
-            <Link style={{ marginVertical: 20 }} to={'/registerrecr'}><Text>Recruteur</Text></Link>
+                    <View style={styles.conn}>
 
+                        <Text style={styles.text}>Inscription</Text>
+
+                        <View style={styles.card}>
+                        <Link to={'/registercand'}><Image style={styles.candimg} source={require('../assets/image/cand2.png')}></Image></Link>
+                        <Text style={{textAlign:'center'}}>Candidat</Text>
+                        </View>
+                        <View style={styles.card}>
+                        <Link to={'/registerrecr'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
+                        <Text style={{textAlign:'center'}}>Recruteur</Text>
+                        </View>
+                    </View>
+
+            </View>
             <Bottom />
         </View>
     )
@@ -50,5 +62,26 @@ const styles = StyleSheet.create({
         color: "#003147",
         fontWeight: "bold",
     },
-
+    candimg: {
+        width: 100,
+        height: 100,
+    },
+    conn: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderColor: "#003147",
+    },
+    containerScroll: {
+        width: '80%',
+        borderRadius: 20,
+        borderColor: "#003147",
+        borderWidth: 1,
+        marginHorizontal: 20,
+        backgroundColor: 'whitesmoke',
+    },
+    card:{
+        marginVertical:25,
+    }
 });

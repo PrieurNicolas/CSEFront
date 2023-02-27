@@ -7,7 +7,7 @@ export default class Bottom extends React.Component {
     return (
       <View style={styles.container}>
         <Link to={'/about'}>
-        <Text style={styles.text}>© 2022 CAB - Mentions légales</Text>
+        <Text style={styles.text}>© 2023 CAB - Mentions légales</Text>
         </Link>
       </View>
     )

@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     color: "red"
   },
   btn:{
-    marginHorizontal:'auto',
+    alignSelf:'center',
     alignItems:'center',
     justifyContent:'center',
     height:40,

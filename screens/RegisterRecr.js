@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     btn: {
-        marginHorizontal: 'auto',
+        alignSelf:'center',
         alignItems: 'center',
         justifyContent: 'center',
         height: 40,

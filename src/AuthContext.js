@@ -131,7 +131,7 @@ export const AuthProvider = ({ children }) => {
                 "passwordconf": password,
                 "email": email,
                 "phone": tel,
-                "isActif": true,
+                "isActif": false,
             },
             "localisation": {
                 "address": adresse,

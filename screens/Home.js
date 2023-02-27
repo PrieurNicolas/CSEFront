@@ -15,14 +15,22 @@ const Home = () => {
             <Top />
             <Spinner visible={isLoading} />
             <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
-            <Text style={styles.text}>Profil Candidat</Text>
 
-            <Link style={{ marginVertical: 20 }} to={'/updatecand'}><Text>Modifier mon profil</Text></Link>
+            <View style={styles.conn}>
 
-            <Link style={{ marginVertical: 20 }} to={'/search'}><Text>Rechercher une offre</Text></Link>
+                <Text style={styles.text}>Profil Candidat</Text>
+                
+                <View style={styles.card}>
+                    <Link to={'/updatecand'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
+                    <Text>Modifier mon profil</Text>
+                </View>
+                <View style={styles.card}>
+                    <Link to={'/search'}><Image style={styles.candimg} source={require('../assets/image/cand2.png')}></Image></Link>
+                    <Text>Rechercher un candidat</Text>
+                </View>
+                <Button title='Logout' color='red' onPress={logout} />
 
-            <Button title='Logout' color='red' onPress={logout} />
-
+            </View>
             <Bottom />
         </View>
     )
@@ -74,5 +82,23 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         marginTop: 20,
         marginBottom: 36,
-    }
+    },
+    conn: {
+        width: '80%',
+        backgroundColor: 'whitesmoke',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderColor: "#003147",
+        borderWidth: 1,
+    },
+    card:{
+        alignItems:'center',
+        marginVertical:25,
+    },
+    candimg: {
+        width: 100,
+        height: 100,
+    },
 });

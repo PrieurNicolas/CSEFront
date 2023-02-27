@@ -7,6 +7,7 @@ import Spinner from 'react-native-loading-spinner-overlay/lib'
 import { BASE_URL } from '../src/config'
 import axios from 'axios'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { Link } from 'react-router-native'
 
 const RegisterCand = () => {
 
@@ -24,11 +25,12 @@ const RegisterCand = () => {
     const { isLoading, registerCand, failLog } = useContext(AuthContext);
 
     const [textFailCheck, setTextFailCheck] = useState("")
+    const [textSuccesCheck, setTextSuccesCheck] = useState("")
     const [failCheck, setFailCheck] = useState(true)
-  
+
     if (failLog && failCheck) {
-      setTextFailCheck('Inscription impossible.')
-      setFailCheck(false)
+        setTextFailCheck('Inscription impossible.')
+        setFailCheck(false)
     }
 
     //Selection de diplômes
@@ -75,7 +77,21 @@ const RegisterCand = () => {
         console.log(
             email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes,
             dateNaiss
-            )
+        )
+    }
+
+    function clearInput() {
+        setEmail('')
+        setPassword('')
+        setPasswordConf('')
+        setNom('')
+        setPrenom('')
+        setTel('')
+        setCodePostal('')
+        setVille('')
+        setAdresse('')
+        setDispos('')
+        setDiplomes('')
     }
 
 
@@ -101,56 +117,57 @@ const RegisterCand = () => {
 
     const checkTextInput = () => {
         //Check for Email
-        if(!email.trim()) {
+        if (!email.trim()) {
             alert('Veuillez entrer un email')
         }
         //Check for the Email TextInput
         if (!password.trim()) {
-          alert('Veuillez entrer un mot de passe');
-          return;
+            alert('Veuillez entrer un mot de passe');
+            return;
         }
         //Check Double Password
-        if(password != passwordConf) {
+        if (password != passwordConf) {
             alert('Mot de passe diff');
             return;
         }
         //Check for name of the Structure
-        if(!nom.trim()){
+        if (!nom.trim()) {
             alert('Veuillez entrer un nom');
             return;
         }
         //Check for adresse
-        if(!prenom.trim()){
+        if (!prenom.trim()) {
             alert('Veuillez entrer un prenom');
             return;
         }
         //Check for postal code
-        if(!tel.trim()){
+        if (!tel.trim()) {
             !alert('Veuillez entrer un numero de telephone');
             return;
         }
         //Check for ville
-        if(!codePostal.trim()){
+        if (!codePostal.trim()) {
             !alert('Veuillez entrer un code postal');
             return;
         }
         //Check for phone
-        if(!ville.trim()){
+        if (!ville.trim()) {
             !alert('Veuillez entrer une ville');
             return;
         }
-        if(!adresse.trim()){
+        if (!adresse.trim()) {
             !alert('Veuillez entrer une adresse')
         }
         //Check for the Dispo TextInput
-        if(!dispos.length==1) {
+        if (!dispos.length == 1) {
             alert('Veuillez entrer une disponibilité');
             return;
         }
-        setTextFailCheck('Inscription succes')
+        setTextSuccesCheck('Inscription succes')
+        clearInput()
         registerCand(email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes);
         alert('Success');
-      };
+    };
 
 
 
@@ -228,7 +245,7 @@ const RegisterCand = () => {
                             {/* ===================================================================================================================== */}
 
                             <Text>Date de naissance*</Text>
-                            
+
                             <Text>{date}</Text>
 
                             <View>
@@ -290,7 +307,7 @@ const RegisterCand = () => {
                             <Text>Mes disponibilités*</Text>
 
                             <View style={styles.options}>
-                                {allDispo.map((option,i) => (
+                                {allDispo.map((option, i) => (
                                     <View key={i} style={styles.diplome}>
                                         <TouchableOpacity style={styles.checkBox}
                                             onPress={() => pickDispo(option.id)}>
@@ -306,7 +323,7 @@ const RegisterCand = () => {
                             <Text>Mes diplômes</Text>
 
                             <View style={styles.options}>
-                                {allDiplomes?.map((option,i) => (
+                                {allDiplomes?.map((option, i) => (
                                     <View key={i} style={styles.diplome}>
                                         <TouchableOpacity style={styles.checkBox}
                                             onPress={() => pickDiplome(option.id)}>
@@ -319,12 +336,16 @@ const RegisterCand = () => {
                                 ))}
                             </View>
                             <Text style={styles.failCheck}>{textFailCheck}</Text>
-
+                            <Text style={styles.succesCheck}>{textSuccesCheck}</Text>
 
                             <Pressable style={styles.btn}
                                 onPress={checkTextInput}><Text style={styles.txtbtn}>Terminer</Text></Pressable>
 
                             {/* <Button onPress={result} title='Test'></Button> */}
+                            <Button onPress={clearInput} title='reset'></Button>
+                            <Link to={'/'}>
+                            <Text style={styles.link}>Connexion</Text>
+                            </Link>
                         </View>
                     </View>
 
@@ -403,7 +424,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     btn: {
-        marginHorizontal: 'auto',
+        alignSelf:'center',
         alignItems: 'center',
         justifyContent: 'center',
         height: 40,
@@ -446,7 +467,10 @@ const styles = StyleSheet.create({
         height: 25,
         width: 25,
     },
-    failCheck:{
-        color:'red',
-    }
+    failCheck: {
+        color: 'red',
+    },
+    succesCheck: {
+        color: 'green',
+    },
 });

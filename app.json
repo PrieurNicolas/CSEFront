@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e54f5291-231e-4e49-9710-76441e02c6e7"
+      }
+    }
   },
   "name": "CSE"
 }
