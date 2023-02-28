@@ -4,40 +4,24 @@ import Top from '../components/Top'
 import { BASE_URL } from '../src/config'
 import axios from 'axios'
 import Bottom from '../components/Bottom'
-import { Link } from 'react-router-native'
 import { IdContext } from '../src/Id';
 
-const SearchCand = () => {
+const DetailProfilCand = () => {
 
-    const { setId, id } = useContext(IdContext);
+    const { id } = useContext(IdContext);
+
     //Selection de candidats
     const [allCandidates, setAllCandidates] = useState([]);
     async function getCandidates() {
         try {
-            const response = await axios.get(`${BASE_URL}/candidates`)
+            const response = await axios.get(`${BASE_URL}/candidates/${id}`)
+            console.log(response.data)
             setAllCandidates(response.data)
         } catch (e) {
-            console.log(`Erreur dans le getDiplome : ${e}`)
+            console.log(`Erreur dans les details : ${e}`)
         }
     }
-
     useEffect(() => { getCandidates() }, [])
-    const [candidats, setCandidats] = useState([]);
-    function pickDiplome(selectedCandidat) {
-        if (candidats.includes(selectedCandidat)) {
-            setCandidats(candidats.filter(candidat => candidat !== selectedCandidat))
-            return;
-        }
-        setCandidats(candidats => candidats.concat(selectedCandidat));
-    }
-
-    function pickIdCandidat(selectedCandidat) {
-        setId(selectedCandidat)
-        console.log('selected', selectedCandidat)
-        console.log(id)
-        
-    }
-
 
     return (
         <View style={styles.container}>
@@ -50,27 +34,10 @@ const SearchCand = () => {
                     <View style={styles.conn}>
 
                         <View style={styles.wrapper}>
-                            <Text style={styles.text}>Profils candidats</Text>
-
-
-                            <Text>Ici vous retrouverez tout les profils des candidats</Text>
+                            <Text style={styles.text}>{allCandidates.firstname} {allCandidates.lastname}</Text>
 
                             <View style={styles.options}>
-                                {allCandidates?.map((option, i) => (
-                                    <Link to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
-                                        {/* <TouchableOpacity onPress={() => pickIdCandidat(option.id)}> */}
-                                            <View key={i} style={styles.diplome}>
-                                                <TouchableOpacity style={styles.checkBox}
-                                                    onPress={() => pickDiplome(option.id)}>
-                                                    {candidats.includes(option.id) && (
-                                                        <View style={styles.check} />)
-                                                    }
-                                                </TouchableOpacity>
-                                                <Text style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
-                                            </View>
-                                        {/* </TouchableOpacity> */}
-                                    </Link>
-                                ))}
+                               <Text>info</Text>
                             </View>
 
 
@@ -82,7 +49,7 @@ const SearchCand = () => {
         </View>
     )
 }
-export default SearchCand;
+export default DetailProfilCand;
 
 const styles = StyleSheet.create({
     container: {
@@ -116,9 +83,10 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     text: {
-        fontSize: 40,
+        fontSize: 35,
         color: "#003147",
         fontWeight: "bold",
+        textTransform:'uppercase'
     },
     wrapper: {
         alignItems: 'center',

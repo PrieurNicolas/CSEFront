@@ -21,6 +21,8 @@ import UpdateRecr from '../screens/UpdateRecr';
 import SearchCand from '../screens/SearchCand';
 import SearchRecr from '../screens/SearchRecr';
 
+import DetailProfilCand from '../screens/DetailProfilCand';
+
 import { AuthContext } from '../src/AuthContext';
 
 
@@ -43,6 +45,7 @@ const Navigation = () => {
                                 <Route exact path='/' element={<HomeRecr />} />
                                 <Route exact path='/updateprofil' element={<UpdateRecr />} />
                                 <Route exact path='/search' element={<SearchCand />} />
+                                <Route exact path='/detail' element={<DetailProfilCand />} />
                             </>
                         ) ||
                         userInfo.userId == 2 && (

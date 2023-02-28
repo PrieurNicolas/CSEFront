@@ -249,7 +249,7 @@ const RegisterCand = () => {
                             <Text>{date}</Text>
 
                             <View>
-                                <Button title="Show Date Picker" onPress={showDatePicker} />
+                                <Button title="Calendrier" onPress={showDatePicker} />
                                 <DateTimePickerModal
                                     isVisible={isDatePickerVisible}
                                     mode="date"

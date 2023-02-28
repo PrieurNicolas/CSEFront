@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         justifyContent: 'center',
         alignItems: 'center',
-        width:'100%'
+        width: '100%'
     },
     diplome: {
         alignItems: 'center',
