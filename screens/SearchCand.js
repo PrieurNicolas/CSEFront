@@ -32,10 +32,7 @@ const SearchCand = () => {
     }
 
     function pickIdCandidat(selectedCandidat) {
-        setId(selectedCandidat)
-        console.log('selected', selectedCandidat)
-        console.log(id)
-        
+        setId(selectedCandidat)        
     }
 
 
@@ -57,18 +54,16 @@ const SearchCand = () => {
 
                             <View style={styles.options}>
                                 {allCandidates?.map((option, i) => (
-                                    <Link to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
-                                        {/* <TouchableOpacity onPress={() => pickIdCandidat(option.id)}> */}
-                                            <View key={i} style={styles.diplome}>
-                                                <TouchableOpacity style={styles.checkBox}
+                                    <Link key={'Link'+i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
+                                            <View key={'View'+i} style={styles.diplome}>
+                                                <TouchableOpacity key={'Touchable'+i} style={styles.checkBox}
                                                     onPress={() => pickDiplome(option.id)}>
                                                     {candidats.includes(option.id) && (
-                                                        <View style={styles.check} />)
+                                                        <View key={'View2'+i} style={styles.check} />)
                                                     }
                                                 </TouchableOpacity>
-                                                <Text style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
+                                                <Text key={'Text'+i} style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
                                             </View>
-                                        {/* </TouchableOpacity> */}
                                     </Link>
                                 ))}
                             </View>
@@ -91,7 +86,7 @@ const styles = StyleSheet.create({
     },
     containerScroll: {
         width: '100%',
-        height: "80%",
+        height: "75%",
         marginVertical: 80,
     },
     Scroll: {

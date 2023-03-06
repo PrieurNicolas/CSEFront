@@ -22,8 +22,10 @@ import SearchCand from '../screens/SearchCand';
 import SearchRecr from '../screens/SearchRecr';
 
 import DetailProfilCand from '../screens/DetailProfilCand';
+import DetailProfilRecr from '../screens/DetailProfilRecr';
 
 import { AuthContext } from '../src/AuthContext';
+
 
 
 const Navigation = () => {
@@ -35,7 +37,7 @@ const Navigation = () => {
                 {splashLoading ?
                     (
                         <Route
-                            exact path='splashScreen'
+                            exact path='/'
                             element={<Loading />}
                             options={{ headerShown: false }}
                         />
@@ -53,6 +55,7 @@ const Navigation = () => {
                                 <Route exact path='/' element={<HomeCand />} />
                                 <Route exact path='/updateprofil' element={<UpdateCand />} />
                                 <Route exact path='/search' element={<SearchRecr />} />
+                                <Route exact path='/detail' element={<DetailProfilRecr />} />
                             </>
                         ) ||
                         (userInfo.userId != 1 && userInfo.userId != 2) && (

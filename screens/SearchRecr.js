@@ -4,8 +4,12 @@ import Top from '../components/Top'
 import { BASE_URL } from '../src/config'
 import axios from 'axios'
 import Bottom from '../components/Bottom'
+import { Link } from 'react-router-native'
+import { IdContext } from '../src/Id';
 
 const SearchRecr = () => {
+
+    const { setId, id } = useContext(IdContext);
 
     //Selection de candidats
     const [allCandidates, setAllCandidates] = useState([]);
@@ -27,6 +31,10 @@ const SearchRecr = () => {
         setCandidats(candidats => candidats.concat(selectedCandidat));
     }
 
+    function pickIdCandidat(selectedCandidat) {
+        setId(selectedCandidat)        
+    }
+
 
     return (
         <View style={styles.container}>
@@ -42,19 +50,21 @@ const SearchRecr = () => {
                             <Text style={styles.text}>Profils candidats</Text>
 
 
-                            <Text>Ici vous retrouverez tout les profils des candidats</Text>
+                            <Text>Ici vous retrouverez tout les profils des recruteurs</Text>
 
                             <View style={styles.options}>
                                 {allCandidates?.map((option, i) => (
-                                    <View key={i} style={styles.diplome}>
-                                        <TouchableOpacity style={styles.checkBox}
-                                            onPress={() => pickDiplome(option.id)}>
-                                            {candidats.includes(option.id) && (
-                                                <View style={styles.check} />)
-                                            }
-                                        </TouchableOpacity>
-                                        <Text style={styles.diplomeName}>{option.structurename}</Text>
-                                    </View>
+                                    <Link key={'Link'+i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
+                                            <View key={'View'+i} style={styles.diplome}>
+                                                <TouchableOpacity key={'Touchable'+i} style={styles.checkBox}
+                                                    onPress={() => pickDiplome(option.id)}>
+                                                    {candidats.includes(option.id) && (
+                                                        <View key={'View2'+i} style={styles.check} />)
+                                                    }
+                                                </TouchableOpacity>
+                                                <Text key={'Text'+i} style={styles.diplomeName}>{option.structurename}</Text>
+                                            </View>
+                                    </Link>
                                 ))}
                             </View>
 

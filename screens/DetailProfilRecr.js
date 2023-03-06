@@ -6,7 +6,7 @@ import axios from 'axios'
 import Bottom from '../components/Bottom'
 import { IdContext } from '../src/Id';
 
-const DetailProfilCand = () => {
+const DetailProfilRecr = () => {
 
     const { id } = useContext(IdContext);
 
@@ -19,7 +19,7 @@ const DetailProfilCand = () => {
 
     async function getCandidates() {
         try {
-            const response = await axios.get(`${BASE_URL}/candidates/${id}`)
+            const response = await axios.get(`${BASE_URL}/employers/${id}`)
             console.log(response.data)
             setAllCandidates(response.data)
             setUser(response.data.User)
@@ -42,18 +42,10 @@ const DetailProfilCand = () => {
                 <ScrollView style={styles.Scroll}>
                     <View style={styles.conn}>
 
-                        <Text style={styles.text}>{allCandidates.firstname} {allCandidates.lastname}</Text>
+                        <Text style={styles.text}>{allCandidates.structurename}</Text>
 
                         <View style={styles.contactview}>
-                            <Text style={styles.contacttext}>Mes diplômes</Text>
-                            {diplome.map((dip) => <Text style={styles.contactinfo}>
-                                {dip.degreename}
-                            </Text>
-                            )}
-                        </View>
-
-                        <View style={styles.contactview}>
-                            <Text style={styles.contacttext}>Mes disponibilités</Text>
+                            <Text style={styles.contacttext}>Période</Text>
                             {dispo.map((dis, i) => <Text key={i} style={styles.contactinfo}>
                                 {dis.periodname}
                             </Text>
@@ -74,7 +66,6 @@ const DetailProfilCand = () => {
 
                         <View style={styles.contactview}>
                             <Text style={styles.contacttext}>Infos</Text>
-                            <Text style={styles.contactinfo}>Date de naissance : {new Date(allCandidates.birthday).toLocaleDateString()}</Text>
                             <Text style={styles.contactinfo}>Membre depuis : {new Date(allCandidates.createdAt).toLocaleDateString()}</Text>
                         </View>
 
@@ -87,7 +78,7 @@ const DetailProfilCand = () => {
         </View>
     )
 }
-export default DetailProfilCand;
+export default DetailProfilRecr;
 
 const styles = StyleSheet.create({
     container: {

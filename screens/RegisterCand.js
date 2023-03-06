@@ -267,6 +267,9 @@ const RegisterCand = () => {
                                 value={tel}
                                 onChangeText={text => setTel(text)}
                                 maxLength={10}
+                                keyboardType={"numeric"}
+                                inputMode={"numeric"}
+                                textContentType={"telephoneNumber"}
                             />
 
                             <Text>Code postal*</Text>
@@ -294,6 +297,7 @@ const RegisterCand = () => {
                                 value={adresse}
                                 onChangeText={text => setAdresse(text)}
                                 maxLength={100}
+                                
                             />
 
                             {/* <Text>Joindre une photo</Text>
