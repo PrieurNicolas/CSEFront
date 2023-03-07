@@ -161,6 +161,7 @@ export const AuthProvider = ({ children }) => {
                 userInfo,
                 splashLoading,
                 failLog,
+                setFailLog,
                 registerCand,
                 registerRecr,
                 loginCand,

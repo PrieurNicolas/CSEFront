@@ -18,7 +18,7 @@ const HomeRecr = () => {
 
             <View style={styles.conn}>
 
-                <Text style={styles.text}>Profil Recruteur</Text>
+                <Text style={styles.text}>Compte Recruteur</Text>
                 
                 <View style={styles.card}>
                     <Link to={'/updateprofil'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     text: {
-        marginTop: 50,
+        marginTop: 20,
         fontSize: 40,
         color: "#003147",
         fontWeight: "bold",

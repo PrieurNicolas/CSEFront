@@ -25,6 +25,7 @@ export default class MentionsLegales extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     flex: 1,
   },
   text: {
@@ -38,10 +39,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   scrollView: {
-    top: '15%',
-    backgroundColor: 'whitesmoke',
+    width:'90%'
   },
   scroll:{
-    height: "80%",
+    top:60,
+    height: "90%",
   }
 })

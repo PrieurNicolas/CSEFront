@@ -22,7 +22,9 @@ const RegisterCand = () => {
     const [ville, setVille] = useState("");
     const [adresse, setAdresse] = useState("");
 
-    const { isLoading, registerCand, failLog } = useContext(AuthContext);
+    const { isLoading, registerCand, failLog, setFailLog } = useContext(AuthContext);
+
+    useEffect(() => {setFailLog(false)})
 
     const [textFailCheck, setTextFailCheck] = useState("")
     const [textSuccesCheck, setTextSuccesCheck] = useState("")
@@ -30,6 +32,7 @@ const RegisterCand = () => {
 
     if (failLog && failCheck) {
         setTextFailCheck('Inscription impossible.')
+        setTextSuccesCheck('')
         setFailCheck(false)
     }
 
@@ -163,6 +166,7 @@ const RegisterCand = () => {
             alert('Veuillez entrer une disponibilité');
             return;
         }
+        setTextFailCheck('')
         setTextSuccesCheck('Inscription succes')
         clearInput()
         registerCand(email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes);
@@ -182,31 +186,31 @@ const RegisterCand = () => {
                     <Spinner visible={isLoading} />
 
                     <View style={styles.conn}>
-                        <Text style={styles.text}>Inscription</Text>
+                        <Text style={styles.text}>Créer votre compte</Text>
 
 
                         <View style={styles.wrapper}>
-                            <Text>Adresse mail*</Text>
+                            <Text>Adresse e-mail</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Adresse mail'
+                                placeholder='Ex: nikolatesla@gmail.com'
                                 value={email}
                                 onChangeText={text => setEmail(text)}
                                 maxLength={50}
                                 underlineColorAndroid="transparent"
                             />
 
-                            <Text>Mot de passe*</Text>
+                            <Text>Nouveau mot de passe</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Mot de passe'
+                                placeholder='Nouveau mot de passe'
                                 value={password}
                                 onChangeText={text => setPassword(text)}
                                 secureTextEntry
                                 maxLength={30}
                             />
 
-                            <Text>Confirmation du mot de passe*</Text>
+                            <Text>Confirmation du mot de passe</Text>
                             <TextInput
                                 style={styles.input}
                                 placeholder='Confirmation du mot de passe'
@@ -224,19 +228,19 @@ const RegisterCand = () => {
                                 onChangeText=''
                             /> */}
 
-                            <Text>Nom*</Text>
+                            <Text>Nom</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Nom'
+                                placeholder='Ex: Tesla'
                                 value={nom}
                                 onChangeText={text => setNom(text)}
                                 maxLength={20}
                             />
 
-                            <Text>Prénom*</Text>
+                            <Text>Prénom</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Prénom'
+                                placeholder='Ex: Nikola'
                                 value={prenom}
                                 onChangeText={text => setPrenom(text)}
                                 maxLength={20}
@@ -244,7 +248,7 @@ const RegisterCand = () => {
 
                             {/* ===================================================================================================================== */}
 
-                            <Text>Date de naissance*</Text>
+                            <Text>Date de naissance</Text>
 
                             <Text>{date}</Text>
 
@@ -260,10 +264,10 @@ const RegisterCand = () => {
 
                             {/* ===================================================================================================================== */}
 
-                            <Text>Téléphone*</Text>
+                            <Text>Téléphone</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Téléphone'
+                                placeholder='Ex: 0607060706'
                                 value={tel}
                                 onChangeText={text => setTel(text)}
                                 maxLength={10}
@@ -272,28 +276,28 @@ const RegisterCand = () => {
                                 textContentType={"telephoneNumber"}
                             />
 
-                            <Text>Code postal*</Text>
+                            <Text>Code postal</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Code postal'
+                                placeholder='Ex: 62200'
                                 value={codePostal}
                                 onChangeText={text => setCodePostal(text)}
                                 maxLength={5}
                             />
 
-                            <Text>Ville*</Text>
+                            <Text>Ville</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Ville'
+                                placeholder='Ex: Boulogne sur mer'
                                 value={ville}
                                 onChangeText={text => setVille(text)}
                                 maxLength={100}
                             />
 
-                            <Text>Adresse*</Text>
+                            <Text>Adresse</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder='Adresse'
+                                placeholder='Ex: 54 rue Smijan'
                                 value={adresse}
                                 onChangeText={text => setAdresse(text)}
                                 maxLength={100}
@@ -308,7 +312,7 @@ const RegisterCand = () => {
                                 onChangeText=''
                             /> */}
 
-                            <Text>Mes disponibilités*</Text>
+                            <Text>Mes disponibilités</Text>
 
                             <View style={styles.options}>
                                 {allDispo.map((option, i) => (
@@ -343,16 +347,17 @@ const RegisterCand = () => {
                             <Text style={styles.succesCheck}>{textSuccesCheck}</Text>
 
                             <Pressable style={styles.btn}
-                                onPress={checkTextInput}><Text style={styles.txtbtn}>Terminer</Text></Pressable>
+                                onPress={checkTextInput}><Text style={styles.txtbtn}>S'incrire</Text></Pressable>
 
                             {/* <Button onPress={result} title='Test'></Button> */}
-                            <Button onPress={clearInput} title='reset'></Button>
-                            <Link to={'/'}>
-                            <Text style={styles.link}>Connexion</Text>
-                            </Link>
+                            <Button onPress={clearInput} title='Effacer les champs'></Button>
                         </View>
                     </View>
-
+                    <View style={styles.conn2}>
+                <Link to={'/'}>
+                    <Text style={styles.link}>Revenir à l'écran de connexion</Text>
+                </Link>
+            </View>
 
 
                 </ScrollView>
@@ -410,6 +415,13 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: "#003147",
     },
+    conn2: {
+        borderTopWidth:1,
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: "#003147",
+    },
     input: {
         height: 30,
         marginBottom: 20,
@@ -421,6 +433,7 @@ const styles = StyleSheet.create({
     },
     link: {
         color: "#003147",
+        padding:15,
     },
     txtbtn: {
         color: 'white',

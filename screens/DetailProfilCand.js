@@ -46,7 +46,7 @@ const DetailProfilCand = () => {
 
                         <View style={styles.contactview}>
                             <Text style={styles.contacttext}>Mes diplômes</Text>
-                            {diplome.map((dip) => <Text style={styles.contactinfo}>
+                            {diplome.map((dip, i) => <Text key={i} style={styles.contactinfo}>
                                 {dip.degreename}
                             </Text>
                             )}

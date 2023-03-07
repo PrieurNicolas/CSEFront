@@ -6,7 +6,7 @@ import { Link } from 'react-router-native'
 
 const PasswordLost = () => {
 
-    const [email, setEmail] = useState(null);
+    const [email, setEmail] = useState();
 
 
     return (
@@ -16,27 +16,27 @@ const PasswordLost = () => {
             <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
 
             <View style={styles.conn}>
-                <Text style={styles.text}>Mot de passe oublié</Text>
-                <Text style={styles.text2}>Entrez votre email</Text>
+                <Text style={styles.text}>Problèmes de connexion ?</Text>
+                <Text style={styles.text2}>Entrez votre adresse e-mail</Text>
 
 
                 <View style={styles.wrapper}>
                     <TextInput
                         style={styles.input}
-                        placeholder='Adresse mail'
+                        placeholder='Adresse e-mail'
                         value={email}
                         onChangeText={text => setEmail(text)}
                     />
 
-                    <Pressable style={styles.btn}><Text style={styles.txtbtn}>Valider</Text></Pressable>
+                    <Pressable style={styles.btn}><Text style={styles.txtbtn}>Envoyer un lien de connexion</Text></Pressable>
 
-                    <View style={{ flexDirection: 'row', marginTop: 20 }}>
 
-                        <Link to={'/'}>
-                            <Text style={styles.link}>Connexion</Text>
-                        </Link>
-                    </View>
                 </View>
+            </View>
+            <View style={styles.conn2}>
+                <Link to={'/'}>
+                    <Text style={styles.link}>Revenir à l'écran de connexion</Text>
+                </Link>
             </View>
 
 
@@ -50,6 +50,7 @@ export default PasswordLost;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        textAlign:'center',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 0,
@@ -81,16 +82,26 @@ const styles = StyleSheet.create({
     wrapper: {
         width: '100%'
     },
-    conn:{
+    conn: {
         width: '80%',
-        backgroundColor:'whitesmoke',
-        borderRadius:20,
+        backgroundColor: 'whitesmoke',
+        borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        padding:10,
-        borderColor:"#003147",
-        borderWidth:1,
-      },
+        padding: 10,
+        borderColor: "#003147",
+        borderWidth: 1,
+    },
+    conn2: {
+        width: '80%',
+        backgroundColor: 'whitesmoke',
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: "#003147",
+        borderWidth: 1,
+        marginTop:5,
+    },
     input: {
         marginVertical: 15,
         borderWidth: 1,
@@ -100,6 +111,7 @@ const styles = StyleSheet.create({
     },
     link: {
         color: "#003147",
+        padding: 15,
     },
     link2: {
         color: "#003147",
@@ -107,18 +119,18 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 36,
     },
-    txtbtn:{
-        color:'white',
+    txtbtn: {
+        color: 'white',
         fontSize: 15,
         fontWeight: "bold",
     },
-    btn:{
-        alignSelf:'center',
-        alignItems:'center',
-        justifyContent:'center',
-        height:40,
-        width:200,
-        backgroundColor:'#003147',
-        borderRadius:10,
-      },
+    btn: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        width: 200,
+        backgroundColor: '#003147',
+        borderRadius: 10,
+    },
 });

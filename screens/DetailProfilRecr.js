@@ -59,7 +59,7 @@ const DetailProfilRecr = () => {
                         </View>
 
                         <View style={styles.contactview}>
-                            <Text style={styles.contacttext}>Me contacter</Text>
+                            <Text style={styles.contacttext}>Nous contacter</Text>
                             <Text style={styles.contactinfo}>Email : {user.email}</Text>
                             <Text style={styles.contactinfo}>Téléphone : {user.phone}</Text>
                         </View>

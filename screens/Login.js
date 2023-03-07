@@ -5,20 +5,24 @@ import Top from '../components/Top'
 import { Link } from 'react-router-native'
 import { AuthContext } from '../src/AuthContext'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { useEffect } from 'react'
 
 const Login = () => {
 
   const [email, setEmail] = useState("cse@cse.com");
   const [password, setPassword] = useState("");
 
-  const { isLoading, loginCand, failLog } = useContext(AuthContext);
+  const { isLoading, loginCand, failLog, setFailLog } = useContext(AuthContext);
+
+  useEffect(() => {setFailLog(false)})
+
 
   const [textFailCheck, setTextFailCheck] = useState("")
   const [failCheck, setFailCheck] = useState(true)
 
   if (failLog && failCheck) {
     setTextFailCheck('Email ou mot de passe incorrect')
-    setFailCheck(false)
+    setFailCheck(false) 
   }
 
   return (
@@ -28,13 +32,13 @@ const Login = () => {
       <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
 
       <View style={styles.conn}>
-        <Text style={styles.text}>Connexion</Text>
+        <Text style={styles.text}>Se connecter</Text>
 
 
         <View style={styles.wrapper}>
           <TextInput
             style={styles.input}
-            placeholder='Adresse mail'
+            placeholder='Adresse e-mail'
             value={email}
             onChangeText={text => setEmail(text)}
           />
@@ -53,16 +57,14 @@ const Login = () => {
             <Text style={styles.link2}>Mot de passe oublié ?</Text>
           </Link>
 
-          <Pressable style={styles.btn} onPress={() => { loginCand(email, password) }} ><Text style={styles.txtbtn}>Connexion</Text></Pressable>
+          <Pressable style={styles.btn} onPress={() => { loginCand(email, password) }} ><Text style={styles.txtbtn}>Se connecter</Text></Pressable>
 
-          <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center' }}>
-            <Text>pas de compte ? </Text>
-
-            <Link to={'/registerlanding'}>
-              <Text style={styles.link}>Inscription</Text>
-            </Link>
-          </View>
         </View>
+      </View>
+      <View style={styles.conn2}>
+        <Link style={styles.link3} to={'/registerlanding'}>
+          <Text style={styles.link}>Vous n'avez pas de compte ? Inscrivez-vous</Text>
+        </Link>
       </View>
 
 
@@ -111,6 +113,16 @@ const styles = StyleSheet.create({
     borderColor: "#003147",
     borderWidth: 1,
   },
+  conn2: {
+    marginTop:5,
+    width: '80%',
+    backgroundColor: 'whitesmoke',
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: "#003147",
+    borderWidth: 1,
+  },
   input: {
     marginBottom: 12,
     borderWidth: 1,
@@ -125,24 +137,28 @@ const styles = StyleSheet.create({
     color: "#003147",
     textAlign: 'right',
     marginTop: 20,
-    marginBottom: 36,
+    marginBottom: 21,
   },
   failCheck: {
     textAlign: 'center',
     color: "red"
   },
-  btn:{
-    alignSelf:'center',
-    alignItems:'center',
-    justifyContent:'center',
-    height:40,
-    width:200,
-    backgroundColor:'#003147',
-    borderRadius:10,
+  btn: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 200,
+    backgroundColor: '#003147',
+    borderRadius: 10,
+    marginTop:15,
   },
-  txtbtn:{
-    color:'white',
+  txtbtn: {
+    color: 'white',
     fontSize: 15,
     fontWeight: "bold",
+  },
+  link3:{
+    padding:15,
   }
 });

@@ -47,10 +47,10 @@ const SearchRecr = () => {
                     <View style={styles.conn}>
 
                         <View style={styles.wrapper}>
-                            <Text style={styles.text}>Profils candidats</Text>
+                            <Text style={styles.text}>Trouver des employeurs</Text>
 
 
-                            <Text>Ici vous retrouverez tout les profils des recruteurs</Text>
+                            <Text>Ici vous retrouverez tous les profils des employeurs</Text>
 
                             <View style={styles.options}>
                                 {allCandidates?.map((option, i) => (

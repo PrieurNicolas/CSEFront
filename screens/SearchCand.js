@@ -32,7 +32,7 @@ const SearchCand = () => {
     }
 
     function pickIdCandidat(selectedCandidat) {
-        setId(selectedCandidat)        
+        setId(selectedCandidat)
     }
 
 
@@ -47,23 +47,23 @@ const SearchCand = () => {
                     <View style={styles.conn}>
 
                         <View style={styles.wrapper}>
-                            <Text style={styles.text}>Profils candidats</Text>
+                            <Text style={styles.text}>Trouver des candidats</Text>
 
 
-                            <Text>Ici vous retrouverez tout les profils des candidats</Text>
+                            <Text>Ici vous retrouverez tous les profils des candidats</Text>
 
                             <View style={styles.options}>
                                 {allCandidates?.map((option, i) => (
-                                    <Link key={'Link'+i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
-                                            <View key={'View'+i} style={styles.diplome}>
-                                                <TouchableOpacity key={'Touchable'+i} style={styles.checkBox}
-                                                    onPress={() => pickDiplome(option.id)}>
-                                                    {candidats.includes(option.id) && (
-                                                        <View key={'View2'+i} style={styles.check} />)
-                                                    }
-                                                </TouchableOpacity>
-                                                <Text key={'Text'+i} style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
-                                            </View>
+                                    <Link key={'Link' + i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
+                                        <View key={'View' + i} style={styles.diplome}>
+                                            <TouchableOpacity key={'Touchable' + i} style={styles.checkBox}
+                                                onPress={() => pickDiplome(option.id)}>
+                                                {candidats.includes(option.id) && (
+                                                    <View key={'View2' + i} style={styles.check} />)
+                                                }
+                                            </TouchableOpacity>
+                                            <Text key={'Text' + i} style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
+                                        </View>
                                     </Link>
                                 ))}
                             </View>
