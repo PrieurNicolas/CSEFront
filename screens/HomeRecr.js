@@ -22,7 +22,7 @@ const HomeRecr = () => {
                 
                 <View style={styles.card}>
                     <Link to={'/updateprofil'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
-                    <Text>Modifier mon profil</Text>
+                    <Text>Voir votre profil</Text>
                 </View>
                 <View style={styles.card}>
                     <Link to={'/search'}><Image style={styles.candimg} source={require('../assets/image/cand2.png')}></Image></Link>

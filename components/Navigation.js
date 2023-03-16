@@ -42,7 +42,7 @@ const Navigation = () => {
                             options={{ headerShown: false }}
                         />
                     ) : userInfo.accessToken ? (
-                        userInfo.userId == 1 && (
+                        userInfo.role == 'ENTREPRISE' && (
                             <>
                                 <Route exact path='/' element={<HomeRecr />} />
                                 <Route exact path='/updateprofil' element={<UpdateRecr />} />
@@ -50,7 +50,7 @@ const Navigation = () => {
                                 <Route exact path='/detail' element={<DetailProfilCand />} />
                             </>
                         ) ||
-                        userInfo.userId == 2 && (
+                        userInfo.role == 'CANDIDAT' && (
                             <>
                                 <Route exact path='/' element={<HomeCand />} />
                                 <Route exact path='/updateprofil' element={<UpdateCand />} />
@@ -58,7 +58,7 @@ const Navigation = () => {
                                 <Route exact path='/detail' element={<DetailProfilRecr />} />
                             </>
                         ) ||
-                        (userInfo.userId != 1 && userInfo.userId != 2) && (
+                        (userInfo.role != 'ENTREPRISE' && userInfo.role != 'CANDIDAT') && (
                             <>
                             <Route exact path='/' element={<Error />} />
                             </>

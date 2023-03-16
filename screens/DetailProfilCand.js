@@ -5,6 +5,7 @@ import { BASE_URL } from '../src/config'
 import axios from 'axios'
 import Bottom from '../components/Bottom'
 import { IdContext } from '../src/Id';
+import { Link } from 'react-router-native'
 
 const DetailProfilCand = () => {
 
@@ -23,8 +24,8 @@ const DetailProfilCand = () => {
             console.log(response.data)
             setAllCandidates(response.data)
             setUser(response.data.User)
-            setDiplome(response.data.User.Degrees)
-            setDispo(response.data.User.Periods)
+            setDiplome(response.data.User.Degree)
+            setDispo(response.data.User.Period)
             setAdresse(response.data.User.Localisation)
         } catch (e) {
             console.log(`Erreur dans les details : ${e}`)
@@ -39,6 +40,7 @@ const DetailProfilCand = () => {
             <Top />
             <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
             <View style={styles.containerScroll}>
+            <Link style={styles.linkretour} to={'/search'}><Image style={styles.imgretour} source={require('../assets/image/retour.png')}></Image></Link>
                 <ScrollView style={styles.Scroll}>
                     <View style={styles.conn}>
 
@@ -69,13 +71,12 @@ const DetailProfilCand = () => {
                         <View style={styles.contactview}>
                             <Text style={styles.contacttext}>Me contacter</Text>
                             <Text style={styles.contactinfo}>Email : {user.email}</Text>
-                            <Text style={styles.contactinfo}>Téléphone : {user.phone}</Text>
+                            <Text style={styles.contactinfo}>Téléphone : 0{user.phone}</Text>
                         </View>
 
                         <View style={styles.contactview}>
                             <Text style={styles.contacttext}>Infos</Text>
                             <Text style={styles.contactinfo}>Date de naissance : {new Date(allCandidates.birthday).toLocaleDateString()}</Text>
-                            <Text style={styles.contactinfo}>Membre depuis : {new Date(allCandidates.createdAt).toLocaleDateString()}</Text>
                         </View>
 
 
@@ -155,5 +156,23 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "#003147",
         fontWeight: "bold",
+    },
+    imgretour:{
+        width:20,
+        height:20,
+    },
+    linkretour:{
+        marginLeft:20,
+        borderRadius: 20,
+        borderColor: "#003147",
+        borderWidth: 1,
+        backgroundColor: 'whitesmoke',
+        padding:10,
+        width:30,
+        height:30,
+        alignContent: 'center',
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });

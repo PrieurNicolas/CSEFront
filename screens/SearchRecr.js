@@ -17,6 +17,7 @@ const SearchRecr = () => {
         try {
             const response = await axios.get(`${BASE_URL}/employers`)
             setAllCandidates(response.data)
+            console.log(response.data)
         } catch (e) {
             console.log(`Erreur dans le getDiplome : ${e}`)
         }
