@@ -14,12 +14,12 @@ export const AuthProvider = ({ children }) => {
     const registerCand = (email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes) => {
         setIsLoading(true);
 
-        let objDispo = dispos?.map(((period) => { 
+        let objDispo = dispos?.map(((period) => {
             return { "id": parseInt(period) }
-         }))
-            let objDiplome = diplomes?.map(((degree) => {
-           return { "id": parseInt(degree) }
-         }))
+        }))
+        let objDiplome = diplomes?.map(((degree) => {
+            return { "id": parseInt(degree) }
+        }))
 
         axios.post(`${BASE_URL}/candidates`, {
             "candidate": {
@@ -116,29 +116,29 @@ export const AuthProvider = ({ children }) => {
     const registerRecr = (email, password, siret, structureName, adresse, codePostal, ville, tel, dispos) => {
         setIsLoading(true);
 
-        let objDispo = dispos?.map(((period) => { 
+        let objDispo = dispos?.map(((period) => {
             return { "id": parseInt(period) }
-         }))
+        }))
 
         axios.post(`${BASE_URL}/employers`,
-        {
-            "employer": {
-                "siret": siret,
-                "structurename": structureName,
-            },
-            "users": {
-                "password": password,
-                "passwordconf": password,
-                "email": email,
-                "phone": tel,
-                "isActif": false,
-            },
-            "localisation": {
-                "address": adresse,
-                "zipCode": codePostal,
-                "city": ville
-            },
-            "periods": objDispo
+            {
+                "employer": {
+                    "siret": siret,
+                    "structurename": structureName,
+                },
+                "users": {
+                    "password": password,
+                    "passwordconf": password,
+                    "email": email,
+                    "phone": tel,
+                    "isActif": false,
+                },
+                "localisation": {
+                    "address": adresse,
+                    "zipCode": codePostal,
+                    "city": ville
+                },
+                "periods": objDispo
             }
         ).then(res => {
             let userInfo = res.data;
@@ -154,6 +154,82 @@ export const AuthProvider = ({ children }) => {
         });
     };
 
+    const UpdatedRecr = (email, siret, structureName, adresse, codePostal, ville, tel, dispos) => {
+        setIsLoading(true);
+
+        let objDispo = dispos?.map(((period) => {
+            return { "id": parseInt(period) }
+        }))
+
+        axios.put(`${BASE_URL}/employers/form/${userInfo.idCE}`,
+            {
+                "employer": {
+                    "siret": siret,
+                    "structurename": structureName
+                },
+                "users": {
+                    "email": email,
+                    "phone": tel
+                },
+                "localisation": {
+                    "address": adresse,
+                    "zipCode": codePostal,
+                    "city": ville
+                },
+                "periods": objDispo
+            }
+        ).then(res => {
+            console.log(res.data)
+            setIsLoading(false);
+            setFailLog(false)
+        }).catch(e => {
+            console.log(`Updating Recruteur error : ${e}`);
+            setIsLoading(false);
+            setFailLog(true)
+        });
+    };
+
+    const UpdatedCand = (email, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes) => {
+        setIsLoading(true);
+
+        let objDispo = dispos?.map(((period) => {
+            return { "id": parseInt(period) }
+        }))
+        let objDiplome = diplomes?.map(((degree) => {
+            return { "id": parseInt(degree) }
+        }))
+
+        axios.put(`${BASE_URL}/candidates/form/${userInfo.idCE}`,
+            {
+                "candidate": {
+                    "firstname": prenom,
+                    "lastname": nom,
+                    "birthday": dateNaiss,
+                    "wantToBe": "animateur"
+                },
+                "users": {
+                    "email": email,
+                    "phone": tel
+                },
+                "localisation": {
+                    "address": adresse,
+                    "zipCode": codePostal,
+                    "city": ville
+                },
+                "periods": objDispo
+                ,
+                "degrees": objDiplome
+            }
+        ).then(res => {
+            console.log(res.data)
+            setIsLoading(false);
+            setFailLog(false)
+        }).catch(e => {
+            console.log(`Updating Candidat error : ${e}`);
+            setIsLoading(false);
+            setFailLog(true)
+        });
+    };
     return (
         <AuthContext.Provider
             value={{
@@ -166,6 +242,8 @@ export const AuthProvider = ({ children }) => {
                 registerRecr,
                 loginCand,
                 logout,
+                UpdatedRecr,
+                UpdatedCand,
             }}>
             {children}
         </AuthContext.Provider>

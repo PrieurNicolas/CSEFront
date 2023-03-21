@@ -25,6 +25,8 @@ import DetailProfilCand from '../screens/DetailProfilCand';
 import DetailProfilRecr from '../screens/DetailProfilRecr';
 
 import { AuthContext } from '../src/AuthContext';
+import UpdateRecrProfil from '../screens/UpdateRecrProfil';
+import UpdateCandProfil from '../screens/UpdateCandProfil';
 
 
 
@@ -48,6 +50,7 @@ const Navigation = () => {
                                 <Route exact path='/updateprofil' element={<UpdateRecr />} />
                                 <Route exact path='/search' element={<SearchCand />} />
                                 <Route exact path='/detail' element={<DetailProfilCand />} />
+                                <Route exact path='/profilupdate' element={<UpdateRecrProfil />} />
                             </>
                         ) ||
                         userInfo.role == 'CANDIDAT' && (
@@ -56,6 +59,7 @@ const Navigation = () => {
                                 <Route exact path='/updateprofil' element={<UpdateCand />} />
                                 <Route exact path='/search' element={<SearchRecr />} />
                                 <Route exact path='/detail' element={<DetailProfilRecr />} />
+                                <Route exact path='/profilupdate' element={<UpdateCandProfil />} />
                             </>
                         ) ||
                         (userInfo.role != 'ENTREPRISE' && userInfo.role != 'CANDIDAT') && (

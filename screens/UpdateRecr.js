@@ -32,7 +32,6 @@ const UpdateRecr = () => {
             setDiplome(response.data.User.Degrees)
             setDispo(response.data.User.Period)
             setAdresse(response.data.User.Localisation)
-            console.log(response.data)
 
         } catch (e) {
             console.log(`Erreur de recupération des données : ${e}`)
@@ -48,7 +47,7 @@ const UpdateRecr = () => {
             <View style={styles.containerScroll}>
                 <View style={styles.linkview}>
             <Link style={styles.linkretour} to={'/'}><Image style={styles.imgretour} source={require('../assets/image/retour.png')}></Image></Link>
-            <Link style={styles.linkupdate} to={'/'}><Image style={styles.imgretour} source={require('../assets/image/crayon.png')}></Image></Link></View>
+            <Link style={styles.linkupdate} to={'/profilupdate'}><Image style={styles.imgretour} source={require('../assets/image/crayon.png')}></Image></Link></View>
                 <ScrollView style={styles.Scroll}>
                     <View style={styles.conn}>
 
