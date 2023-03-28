@@ -34,7 +34,19 @@ const SearchCand = () => {
     function pickIdCandidat(selectedCandidat) {
         setId(selectedCandidat)
     }
+    // ===========================================================filtres
+    const [searchText, setSearchText] = useState('');
+    const [filteredCandidates, setFilteredCandidates] = useState([]);
 
+    function handleSearch(text) {
+        setSearchText(text);
+        const filtered = allCandidates.filter(candidate =>
+            candidate.firstname.toLowerCase().includes(text.toLowerCase()) ||
+            candidate.lastname.toLowerCase().includes(text.toLowerCase())
+        );
+        setFilteredCandidates(filtered);
+    }
+    // ===========================================================filtres
 
     return (
         <View style={styles.container}>
@@ -52,19 +64,28 @@ const SearchCand = () => {
 
                             <Text>Ici vous retrouverez tous les profils des candidats</Text>
 
+                            <View style={styles.searchContainer}>
+                                <TextInput
+                                    style={styles.searchInput}
+                                    placeholder="Recherche"
+                                    value={searchText}
+                                    onChangeText={handleSearch}
+                                />
+                            </View>
+
                             <View style={styles.options}>
-                                {allCandidates?.map((option, i) => (
-                                    <Link key={'Link' + i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
-                                        <View key={'View' + i} style={styles.diplome}>
-                                            <TouchableOpacity key={'Touchable' + i} style={styles.checkBox}
-                                                onPress={() => pickDiplome(option.id)}>
-                                                {candidats.includes(option.id) && (
-                                                    <View key={'View2' + i} style={styles.check} />)
-                                                }
-                                            </TouchableOpacity>
-                                            <Text key={'Text' + i} style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
-                                        </View>
-                                    </Link>
+              {(searchText.length > 0 ? filteredCandidates : allCandidates).map((option, i) => (
+                <Link key={'Link' + i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
+                  <View key={'View' + i} style={styles.diplome}>
+                    <TouchableOpacity key={'Touchable' + i} style={styles.checkBox}
+                      onPress={() => pickDiplome(option.id)}>
+                      {candidats.includes(option.id) && (
+                        <View key={'View2' + i} style={styles.check} />)
+                      }
+                    </TouchableOpacity>
+                    <Text key={'Text' + i} style={styles.diplomeName}>{option.firstname} {option.lastname}</Text>
+                  </View>
+                </Link>
                                 ))}
                             </View>
 
@@ -192,5 +213,13 @@ const styles = StyleSheet.create({
     },
     failCheck: {
         color: 'red',
+    },
+    searchContainer:{
+        borderWidth: 2,
+        borderColor: "#003147",
+        borderRadius: 5,
+        marginVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
