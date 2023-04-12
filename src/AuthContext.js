@@ -59,13 +59,12 @@ export const AuthProvider = ({ children }) => {
         });
     };
 
-    const loginCand = (email, password) => {
+    const loginCand = (data) => {
         setIsLoading(true);
 
-        axios.post(`${BASE_URL}/auth/login`, {
-            email,
-            password,
-        }).then(res => {
+        axios.post(`${BASE_URL}/auth/login`, 
+            data
+        ).then(res => {
             let userInfo = res.data;
             console.log(userInfo);
             setUserInfo(userInfo);

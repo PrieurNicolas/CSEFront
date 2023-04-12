@@ -31,7 +31,7 @@ const PasswordLost = () => {
                         onChangeText={text => setEmail(text)}
                     />
 
-                    <Pressable style={styles.btn} onPress={() => {passwordlost(email)}}><Text style={styles.txtbtn}>Envoyer un lien de connexion</Text></Pressable>
+                    <Pressable style={styles.btn} onPress={() => {passwordlost(email), setEmail('')}}><Text style={styles.txtbtn}>Envoyer un lien de connexion</Text></Pressable>
 
                 </View>
             </View>

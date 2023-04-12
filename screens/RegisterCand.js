@@ -25,7 +25,7 @@ const RegisterCand = () => {
 
     const { isLoading, registerCand, failLog, setFailLog } = useContext(AuthContext);
 
-    useEffect(() => { setFailLog(false) })
+    useEffect(() => { setFailLog(false) }, [])
 
     const [textFailCheck, setTextFailCheck] = useState("")
     const [textSuccesCheck, setTextSuccesCheck] = useState("")
@@ -75,13 +75,6 @@ const RegisterCand = () => {
             return;
         }
         setDispos(dispos => dispos.concat(selectedDispo));
-    }
-
-    function result() {
-        console.log(
-            email, password, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes,
-            dateNaiss
-        )
     }
 
     function clearInput() {
@@ -369,6 +362,8 @@ const RegisterCand = () => {
                             <Text style={styles.failCheck}>{textFailCheck}</Text>
                             <Text style={styles.succesCheck}>{textSuccesCheck}</Text>
 
+                            <Text style={styles.conditions}>En cliquant sur S'inscrire, vous acceptez nos <Link><Text style={{color:'blue'}}>Conditions générales.</Text></Link></Text>
+
                             <Pressable style={styles.btn}
                                 onPress={checkTextInput}><Text style={styles.txtbtn}>S'incrire</Text></Pressable>
 
@@ -521,5 +516,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#BBB",
         borderRadius: 5,
+    },
+    conditions:{
+        marginVertical:5,
+        fontSize:12
     }
 });

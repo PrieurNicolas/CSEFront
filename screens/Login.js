@@ -9,12 +9,24 @@ import { useEffect } from 'react'
 
 const Login = () => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  const loginState = {
+    email: '',
+    password: ''
+  }
+
+  const [data, setData] = useState(loginState)
+
+  function handleChange(event, name){
+    const { value } = event.target
+    setData({ ...data, [name]: value })
+  }
 
   const { isLoading, loginCand, failLog, setFailLog } = useContext(AuthContext);
 
-  useEffect(() => {setFailLog(false)})
+  useEffect(() => { setFailLog(false) }, [])
 
 
   const [textFailCheck, setTextFailCheck] = useState("")
@@ -22,7 +34,7 @@ const Login = () => {
 
   if (failLog && failCheck) {
     setTextFailCheck('Email ou mot de passe incorrect')
-    setFailCheck(false) 
+    setFailCheck(false)
   }
 
   return (
@@ -37,18 +49,20 @@ const Login = () => {
 
         <View style={styles.wrapper}>
           <TextInput
+            name='email'
             style={styles.input}
             placeholder='Adresse e-mail'
-            value={email}
-            onChangeText={text => setEmail(text)}
+            onChange={(event) => {handleChange(event, 'email')}}
+            value={data.email}
           />
 
           <TextInput
             style={styles.input}
             placeholder='Mot de passe'
-            value={password}
-            onChangeText={text => setPassword(text)}
+            onChange={(event) => {handleChange(event, 'password')}}
+            name='password'
             secureTextEntry
+            value={data.password}
           />
 
           <Text style={styles.failCheck}>{textFailCheck}</Text>
@@ -57,7 +71,7 @@ const Login = () => {
             <Text style={styles.link2}>Mot de passe oublié ?</Text>
           </Link>
 
-          <Pressable style={styles.btn} onPress={() => { loginCand(email, password) }} ><Text style={styles.txtbtn}>Se connecter</Text></Pressable>
+          <Pressable style={styles.btn} onPress={() => { loginCand(data), setData(loginState) }} ><Text style={styles.txtbtn}>Se connecter</Text></Pressable>
 
         </View>
       </View>
@@ -114,7 +128,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   conn2: {
-    marginTop:5,
+    marginTop: 5,
     width: '80%',
     backgroundColor: 'whitesmoke',
     borderRadius: 15,
@@ -151,14 +165,14 @@ const styles = StyleSheet.create({
     width: 200,
     backgroundColor: '#003147',
     borderRadius: 10,
-    marginTop:15,
+    marginTop: 15,
   },
   txtbtn: {
     color: 'white',
     fontSize: 15,
     fontWeight: "bold",
   },
-  link3:{
-    padding:15,
+  link3: {
+    padding: 15,
   }
 });

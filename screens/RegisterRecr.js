@@ -22,7 +22,7 @@ const RegisterRecr = () => {
 
     const { isLoading, registerRecr, failLog, setFailLog } = useContext(AuthContext);
 
-    useEffect(() => {setFailLog(false)})
+    useEffect(() => {setFailLog(false)},[])
 
     const [textFailCheck, setTextFailCheck] = useState("")
     const [textSuccesCheck, setTextSuccesCheck] = useState("")
@@ -236,6 +236,8 @@ const RegisterRecr = () => {
                             <Text style={styles.failCheck}>{textFailCheck}</Text>
                             <Text style={styles.succesCheck}>{textSuccesCheck}</Text>
 
+                            <Text style={styles.conditions}>En cliquant sur S'inscrire, vous acceptez nos <Link><Text style={{color:'blue'}}>Conditions générales.</Text></Link></Text>
+
                             <Pressable style={styles.btn}
                                 onPress={checkTextInput}
                             ><Text style={styles.txtbtn}>S'inscrire</Text></Pressable>
@@ -379,4 +381,8 @@ const styles = StyleSheet.create({
     succesCheck: {
         color: 'green',
     },
+    conditions:{
+        marginVertical:5,
+        fontSize:12
+    }
 });
