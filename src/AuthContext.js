@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [splashLoading, setSplashLoading] = useState(false);
     const [failLog, setFailLog] = useState(false);
 
-    const registerCand = (email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes) => {
+    const registerCand = (email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes, checked) => {
         setIsLoading(true);
 
         let objDispo = dispos?.map(((period) => {
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
                 "firstname": prenom,
                 "lastname": nom,
                 "birthday": dateNaiss,
-                "wantToBe": "animateur"
+                "wantToBe": checked
             },
             "users": {
                 "password": password,
@@ -237,7 +237,7 @@ export const AuthProvider = ({ children }) => {
 
         axios.post(`${BASE_URL}/auth/forgetPassword`,
             {
-                    "email": email
+                "email": email
             }
         ).then(res => {
             console.log(res.data)

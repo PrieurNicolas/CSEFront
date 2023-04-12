@@ -8,6 +8,7 @@ import { BASE_URL } from '../src/config'
 import axios from 'axios'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Link } from 'react-router-native'
+import { RadioButton } from 'react-native-paper'
 
 const RegisterCand = () => {
 
@@ -24,7 +25,7 @@ const RegisterCand = () => {
 
     const { isLoading, registerCand, failLog, setFailLog } = useContext(AuthContext);
 
-    useEffect(() => {setFailLog(false)})
+    useEffect(() => { setFailLog(false) })
 
     const [textFailCheck, setTextFailCheck] = useState("")
     const [textSuccesCheck, setTextSuccesCheck] = useState("")
@@ -93,8 +94,8 @@ const RegisterCand = () => {
         setCodePostal('')
         setVille('')
         setAdresse('')
-        setDispos('')
-        setDiplomes('')
+        setDispos([])
+        setDiplomes([])
     }
 
 
@@ -169,10 +170,12 @@ const RegisterCand = () => {
         setTextFailCheck('')
         setTextSuccesCheck('Inscription succes')
         clearInput()
-        registerCand(email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes);
+        registerCand(email, password, passwordConf, nom, prenom, dateNaiss, tel, codePostal, ville, adresse, dispos, diplomes, checked);
         alert('Success');
     };
 
+
+    const [checked, setChecked] = useState('animateur');
 
 
     return (
@@ -245,6 +248,26 @@ const RegisterCand = () => {
                                 onChangeText={text => setPrenom(text)}
                                 maxLength={20}
                             />
+                            {/* ======================== */}
+                            <Text>Postuler en tant que :</Text>
+                            <View style={styles.radiobut}>
+                                <View style={styles.radioview}>
+                                    <RadioButton
+                                        value="animateur"
+                                        status={checked === 'animateur' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('animateur')}
+                                    />
+
+                                    <Text>Animateur</Text></View>
+                                <View style={styles.radioview}>
+                                    <RadioButton
+                                        value="directeur"
+                                        status={checked === 'directeur' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('directeur')}
+                                    />
+
+                                    <Text>Directeur</Text></View>
+                            </View>
 
                             {/* ===================================================================================================================== */}
 
@@ -301,7 +324,7 @@ const RegisterCand = () => {
                                 value={adresse}
                                 onChangeText={text => setAdresse(text)}
                                 maxLength={100}
-                                
+
                             />
 
                             {/* <Text>Joindre une photo</Text>
@@ -354,10 +377,10 @@ const RegisterCand = () => {
                         </View>
                     </View>
                     <View style={styles.conn2}>
-                <Link to={'/'}>
-                    <Text style={styles.link}>Revenir à l'écran de connexion</Text>
-                </Link>
-            </View>
+                        <Link to={'/'}>
+                            <Text style={styles.link}>Revenir à l'écran de connexion</Text>
+                        </Link>
+                    </View>
 
 
                 </ScrollView>
@@ -416,7 +439,7 @@ const styles = StyleSheet.create({
         borderColor: "#003147",
     },
     conn2: {
-        borderTopWidth:1,
+        borderTopWidth: 1,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
@@ -433,7 +456,7 @@ const styles = StyleSheet.create({
     },
     link: {
         color: "#003147",
-        padding:15,
+        padding: 15,
     },
     txtbtn: {
         color: 'white',
@@ -441,7 +464,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     btn: {
-        alignSelf:'center',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         height: 40,
@@ -490,4 +513,13 @@ const styles = StyleSheet.create({
     succesCheck: {
         color: 'green',
     },
+    radioview: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    radiobut: {
+        borderWidth: 1,
+        borderColor: "#BBB",
+        borderRadius: 5,
+    }
 });
