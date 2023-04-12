@@ -1,10 +1,13 @@
 import { Text, View, StyleSheet, Image, TextInput, Button, TouchableOpacity, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Bottom from '../components/Bottom'
 import Top from '../components/Top'
 import { Link } from 'react-router-native'
+import { AuthContext } from '../src/AuthContext'
 
 const PasswordLost = () => {
+
+    const { passwordlost } = useContext(AuthContext);
 
     const [email, setEmail] = useState();
 
@@ -28,8 +31,7 @@ const PasswordLost = () => {
                         onChangeText={text => setEmail(text)}
                     />
 
-                    <Pressable style={styles.btn}><Text style={styles.txtbtn}>Envoyer un lien de connexion</Text></Pressable>
-
+                    <Pressable style={styles.btn} onPress={() => {passwordlost(email)}}><Text style={styles.txtbtn}>Envoyer un lien de connexion</Text></Pressable>
 
                 </View>
             </View>

@@ -230,6 +230,27 @@ export const AuthProvider = ({ children }) => {
             setFailLog(true)
         });
     };
+
+
+    const passwordlost = (email) => {
+        setIsLoading(true);
+
+        axios.post(`${BASE_URL}/auth/forgetPassword`,
+            {
+                    "email": email
+            }
+        ).then(res => {
+            console.log(res.data)
+            setIsLoading(false);
+            setFailLog(false)
+        }).catch(e => {
+            console.log(`Password Lost error : ${e}`);
+            setIsLoading(false);
+            setFailLog(true)
+        });
+    };
+
+
     return (
         <AuthContext.Provider
             value={{
@@ -244,6 +265,7 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 UpdatedRecr,
                 UpdatedCand,
+                passwordlost
             }}>
             {children}
         </AuthContext.Provider>

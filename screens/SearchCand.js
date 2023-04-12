@@ -37,6 +37,7 @@ const SearchCand = () => {
     // Filtres : ============================================
     const [searchText, setSearchText] = useState('');
     const [filteredCandidates, setFilteredCandidates] = useState([]);
+    const [zipCode, setZipCode] = useState('');
     // Filtre par Nom & Prenom ==============================
 
     // function handleSearch(text) {
@@ -56,11 +57,29 @@ const SearchCand = () => {
             setFilteredCandidates([]);
         } else {
             const filtered = allCandidates.filter((candidate) => {
-                return candidate.User && candidate.User.Degree && candidate.User.Degree.some((d) => d.degreename.toLowerCase().includes(text.toLowerCase()));
+                return candidate.User && candidate.User.Degree && candidate.User.Degree.some((d) => d.degreename.toLowerCase().includes(text.toLowerCase())) || candidate.User.Localisation.zipCode.toString().toLowerCase().includes(text.toLowerCase())
             });
             setFilteredCandidates(filtered);
         }
     }
+
+    // Filtres par code postal ==============================
+
+    // function handleZipCodeSearch(text) {
+    //     setZipCode(text);
+    //     if (text.length === 0) {
+    //       setFilteredCandidates([]);
+    //     } else {
+    //       const filtered = allCandidates.filter((candidate) => {
+    //         return candidate.User.Localisation.zipCode.toString().toLowerCase().includes(text.toLowerCase())
+    //       });
+    //       setFilteredCandidates(filtered);
+    //     }
+    //   }
+
+
+
+
 
     return (
         <View style={styles.container}>
@@ -85,10 +104,19 @@ const SearchCand = () => {
                                     value={searchText}
                                     onChangeText={handleSearch}
                                 />
-                            </View>
+                                
+                                {/* <TextInput
+                                    style={styles.searchInput}
+                                    placeholder="Code postal"
+                                    value={zipCode}
+                                    onChangeText={handleZipCodeSearch}
+                                /> */}
+                                </View>
+
 
                             <View style={styles.options}>
                                 {(searchText.length > 0 ? filteredCandidates : allCandidates).map((option, i) => (
+
                                     <Link key={'Link' + i} to={'/detail'} onPress={() => pickIdCandidat(option.id)}>
                                         <View key={'View' + i} style={styles.diplome}>
                                             <TouchableOpacity key={'Touchable' + i} style={styles.checkBox}
@@ -229,11 +257,15 @@ const styles = StyleSheet.create({
         color: 'red',
     },
     searchContainer: {
-        borderWidth: 2,
+        justifyContent:'space-between',
+        flexDirection:"row",
+        marginVertical: 5,
+    },
+    searchInput:{
+        textAlign:'center',
+        width:"80%",
+        borderWidth: 1,
         borderColor: "#003147",
         borderRadius: 5,
-        marginVertical: 10,
-        alignItems: 'center',
-        justifyContent: 'center'
     }
 });
