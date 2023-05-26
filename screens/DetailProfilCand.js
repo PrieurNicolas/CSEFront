@@ -79,7 +79,9 @@ const DetailProfilCand = () => {
                             <Text style={styles.contactinfo}>Date de naissance : {new Date(allCandidates.birthday).toLocaleDateString()}</Text>
                         </View>
 
-
+                        <View style={styles.contactview}>
+                        <Pressable style={styles.btn} ><Text style={styles.txtbtn}>Me contacter</Text></Pressable>
+                        </View>
 
                     </View>
                 </ScrollView>
@@ -174,5 +176,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    btn: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        width: 200,
+        backgroundColor: '#003147',
+        borderRadius: 10,
+        marginTop: 15,
+      },
+      txtbtn: {
+        color: 'white',
+        fontSize: 15,
+        fontWeight: "bold",
+      },
 });

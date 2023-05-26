@@ -5,10 +5,40 @@ import Top from '../components/Top'
 import { Link } from 'react-router-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import { AuthContext } from '../src/AuthContext'
+import axios from "axios";
+import { BASE_URL } from "../src/config";
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useEffect } from 'react'
 
 const HomeRecr = () => {
 
     const { logout, isLoading } = useContext(AuthContext);
+    const { refreshToken, setRefreshToken } = useState()
+
+    async function gettest() {
+        try {
+            const jsonValue = await AsyncStorage.getItem('userInfo')
+            const userInfo = JSON.parse(jsonValue)
+            const token = userInfo.refreshToken
+            axios.post(`${BASE_URL}/auth/token`, {
+                token
+            })
+            try {
+                const response = await axios.post(`${BASE_URL}/auth/token`, {
+                    token
+                })
+                console.log('reponse',response.data)
+            } catch (e) {
+                logout()
+            }
+        } catch (e) {
+            console.log(`Erreur dans le get : ${e}`)
+        }
+    }
+
+    useEffect(() => {
+        gettest()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -19,7 +49,7 @@ const HomeRecr = () => {
             <View style={styles.conn}>
 
                 <Text style={styles.text}>Compte Recruteur</Text>
-                
+
                 <View style={styles.card}>
                     <Link to={'/updateprofil'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
                     <Text>Voir votre profil</Text>
@@ -93,9 +123,9 @@ const styles = StyleSheet.create({
         borderColor: "#003147",
         borderWidth: 1,
     },
-    card:{
-        alignItems:'center',
-        marginVertical:25,
+    card: {
+        alignItems: 'center',
+        marginVertical: 25,
     },
     candimg: {
         width: 100,
