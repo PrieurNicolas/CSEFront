@@ -1,8 +1,12 @@
 {
   "expo": {
-    "name": "CSE",
-    "slug": "CSE",
+    "name": "cse",
     "version": "1.0.0",
+    "icon": "./assets/aggloboulon.png",
+    "splash": {
+      "image": "./assets/aggloboulon.png",
+      "resizeMode": "cover"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
