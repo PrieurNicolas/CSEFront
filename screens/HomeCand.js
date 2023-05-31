@@ -14,18 +14,18 @@ const HomeCand = () => {
         <View style={styles.container}>
             <Top />
             <Spinner visible={isLoading} />
-            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
+            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/cand.png')}></Image></View>
 
             <View style={styles.conn}>
 
                 <Text style={styles.text}>Compte Candidat</Text>
                 
                 <View style={styles.card}>
-                    <Link to={'/updateprofil'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
+                    <Link to={'/updateprofil'}><Image style={styles.candimg} source={require('../assets/recr.png')}></Image></Link>
                     <Text>Modifier mon profil</Text>
                 </View>
                 <View style={styles.card}>
-                    <Link to={'/search'}><Image style={styles.candimg} source={require('../assets/image/cand2.png')}></Image></Link>
+                    <Link to={'/search'}><Image style={styles.candimg} source={require('../assets/cand2.png')}></Image></Link>
                     <Text>Rechercher un recruteur</Text>
                 </View>
                 <Button title='Déconnexion' color='red' onPress={logout} />

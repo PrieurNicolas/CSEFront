@@ -10,7 +10,7 @@ const RegisterLanding = () => {
         <View style={styles.container}>
             <Top />
 
-            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
+            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/cand.png')}></Image></View>
 
             <View style={styles.containerScroll}>
 
@@ -20,11 +20,11 @@ const RegisterLanding = () => {
                         <Text style={styles.text}>Inscription</Text>
 
                         <View style={styles.card}>
-                        <Link to={'/registercand'}><Image style={styles.candimg} source={require('../assets/image/cand2.png')}></Image></Link>
+                        <Link to={'/registercand'}><Image style={styles.candimg} source={require('../assets/cand2.png')}></Image></Link>
                         <Text style={{textAlign:'center'}}>Candidat</Text>
                         </View>
                         <View style={styles.card}>
-                        <Link to={'/registerrecr'}><Image style={styles.candimg} source={require('../assets/image/recr.png')}></Image></Link>
+                        <Link to={'/registerrecr'}><Image style={styles.candimg} source={require('../assets/recr.png')}></Image></Link>
                         <Text style={{textAlign:'center'}}>Recruteur</Text>
                         </View>
                     </View>

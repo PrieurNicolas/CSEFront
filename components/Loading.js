@@ -8,7 +8,7 @@ export default class Starts extends React.Component {
     return (
         <View style={styles.container}>
           <Text style={{color:"white", fontSize:30}}>Centre social eclaté</Text>
-          <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/agglo-boulon.png')}></Image></View>
+          <View style={styles.imagv}><Image style={styles.image} source={require('../assets/agglo-boulon.png')}></Image></View>
           <StatusBar style="auto" />
         </View>
       );

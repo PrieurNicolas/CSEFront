@@ -38,9 +38,9 @@ const DetailProfilCand = () => {
     return (
         <View style={styles.container}>
             <Top />
-            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
+            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/cand.png')}></Image></View>
             <View style={styles.containerScroll}>
-            <Link style={styles.linkretour} to={'/search'}><Image style={styles.imgretour} source={require('../assets/image/retour.png')}></Image></Link>
+            <Link style={styles.linkretour} to={'/search'}><Image style={styles.imgretour} source={require('../assets/retour.png')}></Image></Link>
                 <ScrollView style={styles.Scroll}>
                     <View style={styles.conn}>
 

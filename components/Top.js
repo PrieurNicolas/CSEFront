@@ -8,7 +8,7 @@ export default class Bottom extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.imagv}>
-                    <Link to={'/'}><Image style={styles.image} source={require('../assets/image/agglo-boulon.png')}></Image></Link>
+                    <Link to={'/'}><Image style={styles.image} source={require('../assets/agglo-boulon.png')}></Image></Link>
                 </View>
 
                 <View style={styles.log}>

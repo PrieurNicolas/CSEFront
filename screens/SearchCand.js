@@ -84,7 +84,7 @@ const SearchCand = () => {
     return (
         <View style={styles.container}>
             <Top />
-            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
+            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/cand.png')}></Image></View>
 
             <View style={styles.containerScroll}>
                 <ScrollView style={styles.Scroll}>

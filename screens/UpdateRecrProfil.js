@@ -82,10 +82,10 @@ const UpdateRecrProfil = () => {
     return (
         <View style={styles.container}>
             <Top />
-            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/image/cand.png')}></Image></View>
+            <View style={styles.imagv}><Image style={styles.image} source={require('../assets/cand.png')}></Image></View>
             <View style={styles.containerScroll}>
                 <View style={styles.linkview}>
-            <Link style={styles.linkretour} to={'/updateprofil'}><Image style={styles.imgretour} source={require('../assets/image/retour.png')}></Image></Link></View>
+            <Link style={styles.linkretour} to={'/updateprofil'}><Image style={styles.imgretour} source={require('../assets/retour.png')}></Image></Link></View>
                 <ScrollView style={styles.Scroll}>
                     <View style={styles.conn}>
 
