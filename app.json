@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "cse",
+    "slug": "cse",
     "version": "1.0.0",
     "icon": "./assets/aggloboulon.png",
     "splash": {
