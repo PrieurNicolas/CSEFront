@@ -1,20 +1,12 @@
 {
   "expo": {
-    "name": "cse",
-    "slug": "cse",
+    "name": "CSE",
+    "slug": "CSE",
     "version": "1.0.0",
-    "icon": "./assets/aggloboulon.png",
-    "splash": {
-      "image": "./assets/aggloboulon.png",
-      "resizeMode": "cover"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/aggloboulon.png"
-      },
       "package": "com.zorfy.CSE"
     },
     "extra": {
