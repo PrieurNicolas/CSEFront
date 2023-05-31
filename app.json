@@ -6,6 +6,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/image/agglo-boulon.png"
+      },
+      "package": "com.zorfy.CSE"
+    },
     "extra": {
       "eas": {
         "projectId": "e54f5291-231e-4e49-9710-76441e02c6e7"
