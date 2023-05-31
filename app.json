@@ -8,7 +8,7 @@
     ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/agglo-boulon.png"
+        "foregroundImage": "./assets/aggloboulon.png"
       },
       "package": "com.zorfy.CSE"
     },
