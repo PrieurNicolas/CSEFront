@@ -368,7 +368,8 @@ const RegisterCand = () => {
                                 onPress={checkTextInput}><Text style={styles.txtbtn}>S'incrire</Text></Pressable>
 
                             {/* <Button onPress={result} title='Test'></Button> */}
-                            <Button onPress={clearInput} title='Effacer les champs'></Button>
+                            <Pressable style={styles.btneffchamps} onPress={clearInput}>
+                            <Text style={styles.txtbtneffchamps}>Effacer les champs</Text></Pressable>
                         </View>
                     </View>
                     <View style={styles.conn2}>
@@ -520,5 +521,19 @@ const styles = StyleSheet.create({
     conditions:{
         marginVertical:5,
         fontSize:12
+    },
+    txtbtneffchamps: {
+        color: 'white',
+        fontSize: 14
+    },
+    btneffchamps: {
+        marginTop:10,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 35,
+        width: 150,
+        backgroundColor: '#003147',
+        borderRadius: 10,
     }
 });
